@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Solve It — Teacher Dashboard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Work+Sans:wght@400;500;600;700&display=swap');
+  :root{
+    --chalk-bg-1: #14231b; --chalk-bg-2: #1d3327; --panel: #223a2c; --panel-edge: rgba(241,237,225,0.14);
+    --chalk-white: #f1ede1; --chalk-dim: rgba(241,237,225,0.62); --chalk-faint: rgba(241,237,225,0.32);
+    --chalk-yellow: #e8c468; --chalk-green: #9fd8a6; --chalk-coral: #e2897b;
+  }
+  *{ box-sizing: border-box; }
+  html, body{ margin:0; min-height:100%; background: radial-gradient(ellipse at 20% 0%, var(--chalk-bg-2) 0%, var(--chalk-bg-1) 60%); color: var(--chalk-white); font-family:'Work Sans', sans-serif; }
+  body{ padding: 40px 20px 64px; display:flex; flex-direction:column; align-items:center; }
+  .wrap{ width:100%; max-width: 880px; }
+  h1{ font-family:'Caveat', cursive; font-weight:700; font-size:2.6rem; color: var(--chalk-yellow); margin:0 0 4px; text-align:center; }
+  .subtitle{ text-align:center; color: var(--chalk-dim); font-size:0.9rem; margin:0 0 30px; }
+
+  .login-wrap{ display:flex; justify-content:center; }
+  .card{ background: var(--panel); border:1px solid var(--panel-edge); border-radius:14px; padding:28px; }
+  .login-card{ width:100%; max-width:360px; }
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-size:0.78rem; color: var(--chalk-dim); margin-bottom:5px; }
+  .field input{ width:100%; background: rgba(241,237,225,0.06); border:1px solid var(--panel-edge); border-radius:8px; color: var(--chalk-white); font-size:0.95rem; padding:10px 12px; outline:none; }
+  .field input:focus{ border-color: var(--chalk-yellow); }
+  button{ font-family:'Work Sans', sans-serif; font-weight:600; font-size:0.88rem; padding:10px 18px; border-radius:8px; cursor:pointer; border:1px solid transparent; background: var(--chalk-yellow); color:#1d2a1f; width:100%; }
+  button.secondary{ background:transparent; border-color: var(--panel-edge); color: var(--chalk-dim); width:auto; }
+  .error{ color: var(--chalk-coral); font-size:0.8rem; text-align:center; margin-top:10px; min-height:1em; }
+
+  .tabs-row{ display:flex; gap:10px; margin-bottom:10px; }
+  .toggle-btn{ background:transparent; border:1px solid var(--panel-edge); color: var(--chalk-dim); border-radius:999px; padding:6px 14px; font-size:0.82rem; width:auto; }
+  .toggle-btn.active{ background: var(--chalk-yellow); border-color: var(--chalk-yellow); color:#1d2a1f; font-weight:600; }
+
+  .dash-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+  .dash-header .meta{ font-size:0.85rem; color: var(--chalk-dim); }
+  .dash-header .code{ color: var(--chalk-yellow); font-weight:600; }
+
+  table{ width:100%; border-collapse: collapse; font-size:0.85rem; }
+  th, td{ text-align:left; padding:9px 10px; border-bottom:1px solid var(--panel-edge); }
+  th{ color: var(--chalk-faint); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.03em; }
+  td{ color: var(--chalk-white); }
+  .muted{ color: var(--chalk-faint); }
+  .pill{ display:inline-block; padding:2px 8px; border-radius:999px; font-size:0.75rem; }
+  .pill.correct{ background: rgba(159,216,166,0.15); color: var(--chalk-green); }
+  .pill.incorrect{ background: rgba(226,137,123,0.15); color: var(--chalk-coral); }
+
+  .section-title{ font-size:0.95rem; font-weight:600; margin: 26px 0 10px; color: var(--chalk-white); }
+  .hidden{ display:none !important; }
+  .empty-note{ color: var(--chalk-faint); font-size:0.85rem; padding: 16px 0; text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Teacher Dashboard</h1>
+  <p class="subtitle">See how your classes are getting on</p>
+
+  <div id="loginScreen">
+    <div class="login-wrap">
+      <div class="card login-card">
+        <div class="field">
+          <label for="classCodeInput">Class code</label>
+          <input type="text" id="classCodeInput" style="text-transform:uppercase;" maxlength="6" placeholder="e.g. K7X9QT" />
+        </div>
+        <div class="field">
+          <label for="passcodeInput">Passcode</label>
+          <input type="password" id="passcodeInput" placeholder="Set when you created the class" />
+        </div>
+        <button id="loginBtn">View class</button>
+        <p class="error" id="loginError"></p>
+
+        <div class="tabs-row" style="margin-top:24px; justify-content:center;">
+          <span class="muted" style="font-size:0.8rem;">Don't have a class yet?</span>
+        </div>
+        <button class="secondary" id="showCreateBtn" style="margin:8px auto 0; display:block;">Create a new class</button>
+      </div>
+    </div>
+
+    <div class="login-wrap hidden" id="createWrap" style="margin-top:16px;">
+      <div class="card login-card">
+        <div class="field">
+          <label for="teacherNameInput">Your name</label>
+          <input type="text" id="teacherNameInput" placeholder="e.g. Ms Smith" />
+        </div>
+        <div class="field">
+          <label for="classNameInput">Class name</label>
+          <input type="text" id="classNameInput" placeholder="e.g. 10A Maths" />
+        </div>
+        <div class="field">
+          <label for="newPasscodeInput">Choose a passcode</label>
+          <input type="password" id="newPasscodeInput" placeholder="At least 4 characters" />
+        </div>
+        <button id="createBtn">Create class</button>
+        <p class="error" id="createError"></p>
+        <p class="muted" id="createSuccess" style="text-align:center; font-size:0.85rem; margin-top:10px;"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="dashScreen" class="hidden">
+    <div class="dash-header">
+      <div class="meta">Class: <strong id="classNameLabel"></strong> &nbsp;·&nbsp; Code: <span class="code" id="classCodeLabel"></span></div>
+      <button class="secondary" id="logoutBtn" style="width:auto;">Log out</button>
+    </div>
+
+    <div class="section-title">Students</div>
+    <table id="studentsTable">
+      <thead><tr><th>Name</th><th>Attempted</th><th>Correct</th><th>Accuracy</th><th>Best streak</th></tr></thead>
+      <tbody id="studentsBody"></tbody>
+    </table>
+    <p class="empty-note hidden" id="noStudentsNote">No students have joined this class yet — give them the class code above.</p>
+
+    <div class="section-title">Recent activity</div>
+    <table id="activityTable">
+      <thead><tr><th>Student</th><th>Topic</th><th>Result</th><th>When</th></tr></thead>
+      <tbody id="activityBody"></tbody>
+    </table>
+    <p class="empty-note hidden" id="noActivityNote">No activity yet.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  const TOPIC_NAMES = {
+    'linear-equations': 'Linear equations', 'expanding': 'Expanding & simplifying',
+    'quadratic-factorising': 'Factorising quadratics', 'quadratic-solving': 'Solving quadratics',
+    'simultaneous': 'Simultaneous equations', 'percentages': 'Percentages', 'ratio': 'Ratio',
+    'indices': 'Laws of indices', 'angles': 'Angle facts', 'pythagoras': 'Pythagoras',
+    'trigonometry': 'Trigonometry', 'circle-theorems': 'Circle theorems', 'transformations': 'Transformations',
+    'sequences': 'Sequences', 'substitution': 'Substitution', 'rearranging': 'Rearranging formulae',
+    'fractions': 'Fractions', 'standard-form': 'Standard form', 'probability': 'Probability',
+    'rounding': 'Rounding & sig figs', 'proportion': 'Proportion',
+  };
+  function topicName(id){ return TOPIC_NAMES[id] || id; }
+
+  const TOKEN_KEY = 'solveit_teacher_token';
+  const els = {
+    loginScreen: document.getElementById('loginScreen'),
+    dashScreen: document.getElementById('dashScreen'),
+    classCodeInput: document.getElementById('classCodeInput'),
+    passcodeInput: document.getElementById('passcodeInput'),
+    loginBtn: document.getElementById('loginBtn'),
+    loginError: document.getElementById('loginError'),
+    showCreateBtn: document.getElementById('showCreateBtn'),
+    createWrap: document.getElementById('createWrap'),
+    teacherNameInput: document.getElementById('teacherNameInput'),
+    classNameInput: document.getElementById('classNameInput'),
+    newPasscodeInput: document.getElementById('newPasscodeInput'),
+    createBtn: document.getElementById('createBtn'),
+    createError: document.getElementById('createError'),
+    createSuccess: document.getElementById('createSuccess'),
+    classNameLabel: document.getElementById('classNameLabel'),
+    classCodeLabel: document.getElementById('classCodeLabel'),
+    logoutBtn: document.getElementById('logoutBtn'),
+    studentsBody: document.getElementById('studentsBody'),
+    noStudentsNote: document.getElementById('noStudentsNote'),
+    activityBody: document.getElementById('activityBody'),
+    noActivityNote: document.getElementById('noActivityNote'),
+  };
+
+  function timeAgo(iso){
+    const diffMs = Date.now() - new Date(iso).getTime();
+    const mins = Math.round(diffMs / 60000);
+    if(mins < 1) return 'just now';
+    if(mins < 60) return mins + ' min ago';
+    const hrs = Math.round(mins / 60);
+    if(hrs < 24) return hrs + ' hr ago';
+    return Math.round(hrs / 24) + ' day(s) ago';
+  }
+
+  async function loadDashboard(){
+    const token = localStorage.getItem(TOKEN_KEY);
+    if(!token) return showLogin();
+    try{
+      const res = await fetch('/api/teacher/class', { headers: { 'x-teacher-token': token } });
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.error || 'Could not load class');
+      renderDashboard(data);
+    } catch(e){
+      localStorage.removeItem(TOKEN_KEY);
+      showLogin();
+      els.loginError.textContent = e.message;
+    }
+  }
+
+  function renderDashboard(data){
+    els.loginScreen.classList.add('hidden');
+    els.dashScreen.classList.remove('hidden');
+    els.classNameLabel.textContent = data.className;
+    els.classCodeLabel.textContent = data.classCode;
+
+    // Aggregate per-student totals across all topics.
+    const byStudent = {};
+    data.students.forEach(s => { byStudent[s.id] = { name: s.name, attempted: 0, correct: 0, bestStreak: 0 }; });
+    data.progress.forEach(p => {
+      const s = byStudent[p.student_id];
+      if(!s) return;
+      s.attempted += p.attempted;
+      s.correct += p.correct;
+      s.bestStreak = Math.max(s.bestStreak, p.best_streak);
+    });
+    const rows = Object.values(byStudent).sort((a,b) => a.name.localeCompare(b.name));
+    els.studentsBody.innerHTML = '';
+    els.noStudentsNote.classList.toggle('hidden', rows.length > 0);
+    rows.forEach(s => {
+      const acc = s.attempted > 0 ? Math.round((s.correct / s.attempted) * 100) + '%' : '—';
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + escapeHtml(s.name) + '</td><td>' + s.attempted + '</td><td>' + s.correct + '</td><td>' + acc + '</td><td>' + s.bestStreak + '</td>';
+      els.studentsBody.appendChild(tr);
+    });
+
+    els.activityBody.innerHTML = '';
+    els.noActivityNote.classList.toggle('hidden', data.recent.length > 0);
+    data.recent.forEach(a => {
+      const tr = document.createElement('tr');
+      const pill = '<span class="pill ' + (a.was_correct ? 'correct' : 'incorrect') + '">' + (a.was_correct ? 'Correct' : 'Incorrect') + '</span>';
+      tr.innerHTML = '<td>' + escapeHtml(a.name) + '</td><td>' + escapeHtml(topicName(a.topic_id)) + '</td><td>' + pill + '</td><td class="muted">' + timeAgo(a.created_at) + '</td>';
+      els.activityBody.appendChild(tr);
+    });
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+  }
+
+  function showLogin(){
+    els.loginScreen.classList.remove('hidden');
+    els.dashScreen.classList.add('hidden');
+  }
+
+  els.loginBtn.addEventListener('click', async () => {
+    els.loginError.textContent = '';
+    const classCode = els.classCodeInput.value.trim().toUpperCase();
+    const passcode = els.passcodeInput.value;
+    if(!classCode || !passcode){ els.loginError.textContent = 'Enter both the class code and passcode.'; return; }
+    try{
+      const res = await fetch('/api/teacher/login', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ classCode, passcode })
+      });
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.error || 'Login failed');
+      localStorage.setItem(TOKEN_KEY, data.teacherToken);
+      await loadDashboard();
+    } catch(e){
+      els.loginError.textContent = e.message;
+    }
+  });
+  [els.classCodeInput, els.passcodeInput].forEach(i => i.addEventListener('keydown', e => { if(e.key === 'Enter') els.loginBtn.click(); }));
+
+  els.showCreateBtn.addEventListener('click', () => els.createWrap.classList.toggle('hidden'));
+  els.createBtn.addEventListener('click', async () => {
+    els.createError.textContent = ''; els.createSuccess.textContent = '';
+    const teacherName = els.teacherNameInput.value.trim();
+    const className = els.classNameInput.value.trim();
+    const passcode = els.newPasscodeInput.value;
+    if(!teacherName || !className || !passcode){ els.createError.textContent = 'Fill in all three fields.'; return; }
+    try{
+      const res = await fetch('/api/teacher/create-class', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ teacherName, className, passcode })
+      });
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.error || 'Could not create class');
+      els.createSuccess.textContent = 'Class created! Your class code is ' + data.classCode + ' — give this to your students. You can now log in above with that code and your passcode.';
+      els.classCodeInput.value = data.classCode;
+    } catch(e){
+      els.createError.textContent = e.message;
+    }
+  });
+
+  els.logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem(TOKEN_KEY);
+    showLogin();
+  });
+
+  loadDashboard();
+})();
+</script>
+</body>
+</html>
