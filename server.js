@@ -18,6 +18,57 @@ const path = require('path');
 const db = require('./db');
 
 const app = express();
+const Stripe = require('stripe');
+const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SECRET_KEY) : null;
+
+// ---------------------------------------------------------------
+// Stripe webhook — MUST be registered before express.json() below,
+// because Stripe's signature verification needs the exact raw request
+// body, not a body that's already been parsed into an object.
+// ---------------------------------------------------------------
+app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+  if (!stripe || !process.env.STRIPE_WEBHOOK_SECRET) {
+    console.error('Stripe webhook received but Stripe is not configured on this server.');
+    return res.status(500).send('Stripe not configured');
+  }
+  let event;
+  try {
+    event = stripe.webhooks.constructEvent(req.body, req.headers['stripe-signature'], process.env.STRIPE_WEBHOOK_SECRET);
+  } catch (err) {
+    console.error('Stripe webhook signature verification failed:', err.message);
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  try {
+    if (event.type === 'checkout.session.completed') {
+      const session = event.data.object;
+      const classId = session.metadata && session.metadata.classId;
+      if (classId && session.customer && session.subscription) {
+        await db.activateSubscriptionForClassId({
+          classId,
+          stripeCustomerId: session.customer,
+          stripeSubscriptionId: session.subscription,
+          status: 'active',
+          planId: session.metadata && session.metadata.planId,
+        });
+      }
+    } else if (event.type === 'customer.subscription.updated' || event.type === 'customer.subscription.deleted') {
+      const sub = event.data.object;
+      // Stripe subscription statuses: active, past_due, canceled, unpaid, trialing, incomplete, incomplete_expired
+      await db.updateSubscriptionStatusBySubscriptionId({ stripeSubscriptionId: sub.id, status: sub.status });
+    } else if (event.type === 'invoice.payment_failed') {
+      const invoice = event.data.object;
+      if (invoice.subscription) {
+        await db.updateSubscriptionStatusBySubscriptionId({ stripeSubscriptionId: invoice.subscription, status: 'past_due' });
+      }
+    }
+    res.json({ received: true });
+  } catch (e) {
+    console.error('Error handling Stripe webhook:', e);
+    res.status(500).send('Webhook handler error');
+  }
+});
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -63,6 +114,88 @@ app.post('/api/teacher/create-class', async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: 'Could not create class' });
+  }
+});
+
+// ---------------------------------------------------------------
+// Parent signup: create a pending "class of one family", start Stripe Checkout
+// ---------------------------------------------------------------
+app.post('/api/signup/start', async (req, res) => {
+  try {
+    if (!stripe || !process.env.STRIPE_PRICE_ID) {
+      return res.status(500).json({ error: 'Payments are not configured on this server yet.' });
+    }
+    const { email, passcode, familyName } = req.body || {};
+    if (!email || !passcode) return res.status(400).json({ error: 'email and passcode are required' });
+    if (String(passcode).length < 4) return res.status(400).json({ error: 'Passcode should be at least 4 characters' });
+
+    const passcodeHash = await bcrypt.hash(String(passcode), 10);
+    let classCode, created;
+    for (let attempt = 0; attempt < 5; attempt++) {
+      classCode = randomClassCode();
+      try {
+        created = await db.createPendingParentAccount({
+          classCode, ownerEmail: email, passcodeHash,
+          className: familyName || (email.split('@')[0] + "'s family"),
+        });
+        break;
+      } catch (e) {
+        if (attempt === 4) throw e;
+      }
+    }
+
+    const session = await stripe.checkout.sessions.create({
+      mode: 'subscription',
+      customer_email: email,
+      line_items: [{ price: process.env.STRIPE_PRICE_ID, quantity: 1 }],
+      metadata: { classId: String(created.id), planId: process.env.STRIPE_PRICE_ID },
+      success_url: `${process.env.PUBLIC_BASE_URL}/signup.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.PUBLIC_BASE_URL}/signup.html?cancelled=1`,
+    });
+    res.json({ checkoutUrl: session.url });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Could not start checkout' });
+  }
+});
+
+// ---------------------------------------------------------------
+// After Stripe redirects back: confirm payment and hand back the class code.
+// This gives the success page an immediate answer rather than waiting on
+// webhook timing, while the webhook above remains the source of truth for
+// ongoing subscription status (renewals, cancellations, failed payments).
+// ---------------------------------------------------------------
+app.get('/api/signup/confirm', async (req, res) => {
+  try {
+    if (!stripe) return res.status(500).json({ error: 'Payments are not configured on this server yet.' });
+    const { session_id } = req.query;
+    if (!session_id) return res.status(400).json({ error: 'Missing session_id' });
+
+    const session = await stripe.checkout.sessions.retrieve(session_id);
+    if (session.payment_status !== 'paid' && session.status !== 'complete') {
+      return res.status(402).json({ error: 'Payment not completed yet' });
+    }
+    const classId = session.metadata && session.metadata.classId;
+    if (!classId) return res.status(400).json({ error: 'Could not find the associated account' });
+
+    const klass = await db.getClassById(classId);
+    if (!klass) return res.status(404).json({ error: 'Account not found' });
+
+    // Belt-and-braces: make sure this account is marked active even if the
+    // webhook hasn't landed yet (webhooks can arrive a second or two late).
+    if (klass.subscription_status !== 'active' && session.customer) {
+      await db.activateSubscriptionForClassId({
+        classId,
+        stripeCustomerId: session.customer,
+        stripeSubscriptionId: session.subscription,
+        status: 'active',
+        planId: process.env.STRIPE_PRICE_ID,
+      });
+    }
+    res.json({ classCode: klass.class_code, className: klass.class_name });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Could not confirm your payment — please contact support with your email.' });
   }
 });
 
@@ -124,6 +257,9 @@ app.post('/api/join', async (req, res) => {
     if (!classCode || !studentName) return res.status(400).json({ error: 'classCode and studentName are required' });
     const klass = await db.getClassByCode(String(classCode).toUpperCase());
     if (!klass) return res.status(404).json({ error: 'No class found with that code — check it with your teacher' });
+    if (klass.owner_type === 'parent' && klass.subscription_status !== 'active') {
+      return res.status(402).json({ error: 'This subscription isn\'t active — please check your payment details or contact support.' });
+    }
 
     const cleanName = String(studentName).trim().slice(0, 40);
     if (!cleanName) return res.status(400).json({ error: 'Enter your name' });
@@ -139,11 +275,18 @@ app.post('/api/join', async (req, res) => {
   }
 });
 
-// Verifies a student token from the Authorization header, or null.
+// Verifies a student token AND that their subscription (if a parent account,
+// not a free teacher class) is still active — this is what stops a lapsed
+// or cancelled subscriber from continuing to use a paid account for free.
 async function verifyStudent(req) {
   const token = req.headers['x-student-token'];
   if (!token) return null;
-  return db.getStudentByToken(token);
+  const student = await db.getStudentByToken(token);
+  if (!student) return null;
+  const klass = await db.getClassById(student.class_id);
+  if (!klass) return null;
+  if (klass.owner_type === 'parent' && klass.subscription_status !== 'active') return null;
+  return student;
 }
 
 // ---------------------------------------------------------------

@@ -25,6 +25,18 @@ async function init() {
       created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     );
   `);
+  // These ALTERs run every startup but are no-ops once applied — this is what
+  // lets us evolve the schema (adding paid-subscription support) without a
+  // separate migration step, and without disturbing the classes/students
+  // already live in production from the school pilot.
+  await pool.query(`ALTER TABLE classes ADD COLUMN IF NOT EXISTS owner_type TEXT NOT NULL DEFAULT 'teacher';`);
+  await pool.query(`ALTER TABLE classes ADD COLUMN IF NOT EXISTS owner_email TEXT;`);
+  await pool.query(`ALTER TABLE classes ADD COLUMN IF NOT EXISTS stripe_customer_id TEXT;`);
+  await pool.query(`ALTER TABLE classes ADD COLUMN IF NOT EXISTS stripe_subscription_id TEXT;`);
+  await pool.query(`ALTER TABLE classes ADD COLUMN IF NOT EXISTS subscription_status TEXT;`);
+  await pool.query(`ALTER TABLE classes ADD COLUMN IF NOT EXISTS plan_id TEXT;`);
+  await pool.query(`CREATE INDEX IF NOT EXISTS idx_classes_stripe_customer ON classes(stripe_customer_id);`);
+  await pool.query(`CREATE INDEX IF NOT EXISTS idx_classes_stripe_subscription ON classes(stripe_subscription_id);`);
   await pool.query(`
     CREATE TABLE IF NOT EXISTS students (
       id SERIAL PRIMARY KEY,
@@ -74,6 +86,44 @@ async function createClass({ classCode, teacherName, className, passcodeHash }) 
 async function getClassByCode(classCode) {
   const res = await pool.query(`SELECT * FROM classes WHERE class_code = $1`, [classCode]);
   return res.rows[0] || null;
+}
+async function getClassById(id) {
+  const res = await pool.query(`SELECT * FROM classes WHERE id = $1`, [id]);
+  return res.rows[0] || null;
+}
+
+// ---- Parent/subscription accounts (also rows in `classes`, owner_type='parent') ----
+async function createPendingParentAccount({ classCode, ownerEmail, passcodeHash, className }) {
+  const res = await pool.query(
+    `INSERT INTO classes (class_code, teacher_name, class_name, passcode_hash, owner_type, owner_email, subscription_status)
+     VALUES ($1,$2,$3,$4,'parent',$5,'pending')
+     RETURNING id, class_code`,
+    [classCode, ownerEmail, className, passcodeHash, ownerEmail]
+  );
+  return res.rows[0];
+}
+async function setStripeCheckoutSession({ classId, stripeCustomerId }) {
+  await pool.query(`UPDATE classes SET stripe_customer_id = $1 WHERE id = $2`, [stripeCustomerId, classId]);
+}
+// Used for the FIRST activation, where we know the class only by its own id
+// (from Checkout Session metadata) — the class doesn't have a stripe_customer_id
+// yet, so looking it up BY stripe_customer_id (see below) would find nothing.
+async function activateSubscriptionForClassId({ classId, stripeCustomerId, stripeSubscriptionId, status, planId }) {
+  await pool.query(
+    `UPDATE classes SET stripe_customer_id = $1, stripe_subscription_id = $2, subscription_status = $3, plan_id = $4 WHERE id = $5`,
+    [stripeCustomerId, stripeSubscriptionId, status, planId || null, classId]
+  );
+}
+// Used for ALL SUBSEQUENT events (renewals, cancellations) — by this point the
+// class row already has stripe_customer_id set, so this lookup works.
+async function updateSubscriptionByCustomerId({ stripeCustomerId, stripeSubscriptionId, status, planId }) {
+  await pool.query(
+    `UPDATE classes SET stripe_subscription_id = $1, subscription_status = $2, plan_id = $3 WHERE stripe_customer_id = $4`,
+    [stripeSubscriptionId, status, planId || null, stripeCustomerId]
+  );
+}
+async function updateSubscriptionStatusBySubscriptionId({ stripeSubscriptionId, status }) {
+  await pool.query(`UPDATE classes SET subscription_status = $1 WHERE stripe_subscription_id = $2`, [status, stripeSubscriptionId]);
 }
 
 // ---- Students ----
@@ -141,7 +191,8 @@ async function getClassSummary(classId) {
 
 module.exports = {
   pool, init,
-  createClass, getClassByCode,
+  createClass, getClassByCode, getClassById,
+  createPendingParentAccount, setStripeCheckoutSession, activateSubscriptionForClassId, updateSubscriptionByCustomerId, updateSubscriptionStatusBySubscriptionId,
   createStudent, getStudentByNameInClass, getStudentByToken, getStudentsInClass,
   getProgressForStudent, upsertProgress, resetProgressForStudent, logAttempt,
   getClassSummary,

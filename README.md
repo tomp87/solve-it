@@ -74,6 +74,43 @@ responsive in a live lesson. Paid tiers (from ~$7/month) remove this.
 4. Students go to `https://your-app-url.onrender.com/`, enter the class code
    and their first name, and they're in — no account creation, no email.
 
+## Step 5 — (Optional) Set up paid subscriptions
+
+The app now also supports selling subscriptions directly to parents, as a
+separate flow from the free teacher/class model above — both work
+side-by-side and don't interfere with each other.
+
+1. Create a Stripe account at stripe.com.
+2. **Products → Add product.** Name it (e.g. "Solve It family plan"), set a
+   recurring price (the app defaults to showing £9.99/month on the signup
+   page — edit `public/signup.html` if you want a different displayed price,
+   and make sure it matches what you actually set up in Stripe). Copy the
+   Price ID (starts with `price_`).
+3. **Developers → API keys.** Copy your Secret key (starts with `sk_`; use
+   the test key while you're testing, switch to the live key when you're
+   ready for real payments).
+4. **Developers → Webhooks → Add endpoint.** URL:
+   `https://your-app-url.onrender.com/api/stripe/webhook`. Select these
+   events: `checkout.session.completed`, `customer.subscription.updated`,
+   `customer.subscription.deleted`, `invoice.payment_failed`. Copy the
+   signing secret (starts with `whsec_`).
+5. In Render, add three more environment variables: `STRIPE_SECRET_KEY`,
+   `STRIPE_PRICE_ID`, `STRIPE_WEBHOOK_SECRET` (from steps 2–4), plus
+   `PUBLIC_BASE_URL` set to your actual live app URL (no trailing slash) —
+   this is used to build the payment success/cancel redirect links.
+6. Redeploy. Parents can now sign up at `https://your-app-url.onrender.com/signup.html`.
+
+**Test it with Stripe's test mode first** (test API keys, and Stripe's test
+card number `4242 4242 4242 4242` with any future expiry date and any CVC)
+before switching to live keys and taking real payments.
+
+**What happens on cancellation:** if a parent cancels or a payment fails,
+Stripe tells your app via the webhook, and the app locks that family's
+access immediately — no new logins, and anyone already logged in on a
+device gets logged out on their next action. Free teacher-created classes
+are completely unaffected by any of this; the subscription gate only
+applies to parent-created accounts.
+
 ## Running it locally first (recommended before deploying)
 
 ```
@@ -105,6 +142,16 @@ missing, on purpose, to keep this build focused:
   reset flow before this goes beyond your own use.
 - **No data export** — a teacher can't currently download their class's
   results as a spreadsheet. Easy to add; just not built yet.
+- **No in-app subscription management for parents** — a parent currently
+  can't view billing history or cancel from within the app itself; they'd
+  need to do that from Stripe directly (or you'd need to build a "Manage
+  billing" page using Stripe's Customer Portal, which is a fairly small
+  addition on top of what's here). Worth doing before this is customer-facing
+  at any real scale.
+- **One access code covers the whole family** — multiple children can join
+  under the same code (each gets their own name and separate progress),
+  which is intentional, but there's currently no per-child limit if you
+  wanted to cap it (e.g. "up to 3 children per plan").
 - **No rate limiting beyond the tutor chat** — the tutor endpoint has basic
   per-student rate limiting built in; the rest of the API doesn't yet, which
   is normally fine for a small pilot but would want hardening before wider use.
