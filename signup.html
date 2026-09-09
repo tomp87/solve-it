@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Solve It — Subscribe</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Work+Sans:wght@400;500;600;700&family=Literata:ital@1&display=swap');
+  :root{
+    --ink-rgb: 43,36,24;
+    --chalk-bg-1: #faf6ed; --chalk-bg-2: #f2ead8; --panel: #fffdf8; --panel-edge: rgba(var(--ink-rgb),0.14);
+    --chalk-white: #2b2418; --chalk-dim: rgba(var(--ink-rgb),0.62); --chalk-faint: rgba(var(--ink-rgb),0.32);
+    --chalk-yellow: #b5651d; --chalk-green: #1f7a52; --chalk-coral: #b23b2e; --accent-ink: #fffaf0;
+  }
+  [data-theme="dark"]{
+    --ink-rgb: 241,237,225;
+    --chalk-bg-1: #14231b; --chalk-bg-2: #1d3327; --panel: #223a2c;
+    --chalk-white: #f1ede1; --chalk-yellow: #e8c468; --chalk-green: #9fd8a6; --chalk-coral: #e2897b;
+    --accent-ink: #1d2a1f;
+  }
+  *{ box-sizing: border-box; }
+  html, body{ margin:0; min-height:100%; background: radial-gradient(ellipse at 20% 0%, var(--chalk-bg-2) 0%, var(--chalk-bg-1) 60%); color: var(--chalk-white); font-family:'Work Sans', sans-serif; }
+  body{ padding: 48px 20px; display:flex; flex-direction:column; align-items:center; }
+  .wrap{ width:100%; max-width: 440px; }
+  header{ position: relative; width: 100%; }
+  .theme-toggle{
+    position: absolute; top: -4px; right: 0;
+    background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 999px;
+    width: 38px; height: 38px; font-size: 1.05rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .theme-toggle:hover{ transform: scale(1.06); border-color: rgba(var(--ink-rgb),0.3); }
+  h1{ font-family:'Caveat', cursive; font-weight:700; font-size:2.8rem; color: var(--chalk-yellow); margin:0 0 4px; text-align:center; }
+  .subtitle{ text-align:center; color: var(--chalk-dim); font-size:0.9rem; margin:0 0 30px; }
+  .card{ background: var(--panel); border:1px solid var(--panel-edge); border-radius:14px; padding:30px; }
+  .price{ text-align:center; margin-bottom: 22px; }
+  .price .amount{ font-family:'Caveat', cursive; font-size:2.4rem; color: var(--chalk-white); }
+  .price .period{ color: var(--chalk-faint); font-size:0.85rem; }
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-size:0.78rem; color: var(--chalk-dim); margin-bottom:5px; }
+  .field input{ width:100%; background: rgba(241,237,225,0.06); border:1px solid var(--panel-edge); border-radius:8px; color: var(--chalk-white); font-size:0.95rem; padding:11px 12px; outline:none; }
+  .field input:focus{ border-color: var(--chalk-yellow); }
+  .field .hint{ color: var(--chalk-faint); font-size:0.72rem; margin-top:4px; }
+  button{ font-family:'Work Sans', sans-serif; font-weight:600; font-size:0.92rem; padding:13px 18px; border-radius:8px; cursor:pointer; border:1px solid transparent; background: var(--chalk-yellow); color:var(--accent-ink); width:100%; }
+  button:disabled{ opacity:0.5; cursor:default; }
+  .error{ color: var(--chalk-coral); font-size:0.82rem; text-align:center; margin-top:12px; min-height:1em; }
+  .fine-print{ color: var(--chalk-faint); font-size:0.72rem; text-align:center; margin-top:16px; line-height:1.5; }
+  .fine-print a{ color: var(--chalk-dim); }
+
+  .success-code{ font-family:'Literata', serif; font-style:italic; font-size:2.2rem; text-align:center; color: var(--chalk-yellow); letter-spacing: 0.08em; margin: 18px 0; }
+  .success-note{ color: var(--chalk-dim); font-size:0.88rem; text-align:center; line-height:1.6; margin-bottom: 20px; }
+  .hidden{ display:none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    <h1>Solve It</h1>
+    <p class="subtitle">GCSE Maths practice, remade every time</p>
+  </header>
+
+  <div id="signupCard" class="card">
+    <div class="price">
+      <div class="amount">£9.99<span style="font-size:1.1rem;"> /month</span></div>
+      <div class="period">Cancel anytime · covers the whole family</div>
+    </div>
+    <div class="field">
+      <label for="emailInput">Your email</label>
+      <input type="email" id="emailInput" placeholder="you@example.com" autocomplete="email" />
+    </div>
+    <div class="field">
+      <label for="passcodeInput">Choose a passcode</label>
+      <input type="password" id="passcodeInput" placeholder="At least 4 characters" autocomplete="new-password" />
+      <div class="hint">You'll use this to manage your subscription later — not shared with your kids.</div>
+    </div>
+    <button id="subscribeBtn">Continue to payment</button>
+    <p class="error" id="signupError"></p>
+    <p class="fine-print">You'll be taken to Stripe's secure checkout. We never see or store your card details.</p>
+  </div>
+
+  <div id="successCard" class="card hidden">
+    <p class="success-note">Payment confirmed! Here's your family's access code — give it to your child so they can join.</p>
+    <div class="success-code" id="successCode">------</div>
+    <p class="success-note" id="successClassName"></p>
+    <button id="goToAppBtn">Take me to the app</button>
+  </div>
+
+  <div id="cancelledCard" class="card hidden">
+    <p class="success-note">Checkout was cancelled — no payment was taken. You can try again whenever you're ready.</p>
+    <button id="tryAgainBtn">Back to signup</button>
+  </div>
+
+  <div id="loadingCard" class="card hidden">
+    <p class="success-note">Confirming your payment…</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  const THEME_KEY = 'solveit_theme';
+  const themeToggleBtn = document.getElementById('themeToggle');
+  function applyTheme(theme){
+    if(theme === 'dark'){ document.documentElement.setAttribute('data-theme', 'dark'); themeToggleBtn.textContent = '☀️'; }
+    else { document.documentElement.removeAttribute('data-theme'); themeToggleBtn.textContent = '🌙'; }
+  }
+  (function initTheme(){
+    let saved = null;
+    try{ saved = localStorage.getItem(THEME_KEY); } catch(e){}
+    applyTheme(saved === 'dark' ? 'dark' : 'light');
+  })();
+  themeToggleBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    applyTheme(next);
+    try{ localStorage.setItem(THEME_KEY, next); } catch(e){}
+  });
+
+  const els = {
+    signupCard: document.getElementById('signupCard'),
+    successCard: document.getElementById('successCard'),
+    cancelledCard: document.getElementById('cancelledCard'),
+    loadingCard: document.getElementById('loadingCard'),
+    emailInput: document.getElementById('emailInput'),
+    passcodeInput: document.getElementById('passcodeInput'),
+    subscribeBtn: document.getElementById('subscribeBtn'),
+    signupError: document.getElementById('signupError'),
+    successCode: document.getElementById('successCode'),
+    successClassName: document.getElementById('successClassName'),
+    goToAppBtn: document.getElementById('goToAppBtn'),
+    tryAgainBtn: document.getElementById('tryAgainBtn'),
+  };
+
+  function showOnly(card){
+    [els.signupCard, els.successCard, els.cancelledCard, els.loadingCard].forEach(c => c.classList.add('hidden'));
+    card.classList.remove('hidden');
+  }
+
+  els.subscribeBtn.addEventListener('click', async () => {
+    els.signupError.textContent = '';
+    const email = els.emailInput.value.trim();
+    const passcode = els.passcodeInput.value;
+    if(!email || !passcode){ els.signupError.textContent = 'Enter both your email and a passcode.'; return; }
+    els.subscribeBtn.disabled = true;
+    els.subscribeBtn.textContent = 'Redirecting to payment…';
+    try{
+      const res = await fetch('/api/signup/start', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, passcode })
+      });
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.error || 'Could not start checkout');
+      window.location.href = data.checkoutUrl;
+    } catch(e){
+      els.signupError.textContent = e.message;
+      els.subscribeBtn.disabled = false;
+      els.subscribeBtn.textContent = 'Continue to payment';
+    }
+  });
+
+  els.tryAgainBtn.addEventListener('click', () => {
+    window.location.href = '/signup.html';
+  });
+  els.goToAppBtn.addEventListener('click', () => {
+    window.location.href = '/';
+  });
+
+  async function init(){
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('cancelled')){
+      showOnly(els.cancelledCard);
+      return;
+    }
+    const sessionId = params.get('session_id');
+    if(sessionId){
+      showOnly(els.loadingCard);
+      try{
+        const res = await fetch('/api/signup/confirm?session_id=' + encodeURIComponent(sessionId));
+        const data = await res.json();
+        if(!res.ok) throw new Error(data.error || 'Could not confirm payment');
+        els.successCode.textContent = data.classCode;
+        els.successClassName.textContent = 'Account: ' + data.className;
+        showOnly(els.successCard);
+      } catch(e){
+        showOnly(els.signupCard);
+        els.signupError.textContent = e.message;
+      }
+      return;
+    }
+    showOnly(els.signupCard);
+  }
+  init();
+})();
+</script>
+</body>
+</html>

@@ -7,14 +7,30 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Work+Sans:wght@400;500;600;700&display=swap');
   :root{
-    --chalk-bg-1: #14231b; --chalk-bg-2: #1d3327; --panel: #223a2c; --panel-edge: rgba(241,237,225,0.14);
-    --chalk-white: #f1ede1; --chalk-dim: rgba(241,237,225,0.62); --chalk-faint: rgba(241,237,225,0.32);
-    --chalk-yellow: #e8c468; --chalk-green: #9fd8a6; --chalk-coral: #e2897b;
+    --ink-rgb: 43,36,24;
+    --chalk-bg-1: #faf6ed; --chalk-bg-2: #f2ead8; --panel: #fffdf8; --panel-edge: rgba(var(--ink-rgb),0.14);
+    --chalk-white: #2b2418; --chalk-dim: rgba(var(--ink-rgb),0.62); --chalk-faint: rgba(var(--ink-rgb),0.32);
+    --chalk-yellow: #b5651d; --chalk-green: #1f7a52; --chalk-coral: #b23b2e; --accent-ink: #fffaf0;
+  }
+  [data-theme="dark"]{
+    --ink-rgb: 241,237,225;
+    --chalk-bg-1: #14231b; --chalk-bg-2: #1d3327; --panel: #223a2c;
+    --chalk-white: #f1ede1; --chalk-yellow: #e8c468; --chalk-green: #9fd8a6; --chalk-coral: #e2897b;
+    --accent-ink: #1d2a1f;
   }
   *{ box-sizing: border-box; }
   html, body{ margin:0; min-height:100%; background: radial-gradient(ellipse at 20% 0%, var(--chalk-bg-2) 0%, var(--chalk-bg-1) 60%); color: var(--chalk-white); font-family:'Work Sans', sans-serif; }
   body{ padding: 40px 20px 64px; display:flex; flex-direction:column; align-items:center; }
   .wrap{ width:100%; max-width: 880px; }
+  header{ position: relative; width: 100%; }
+  .theme-toggle{
+    position: absolute; top: -4px; right: 0;
+    background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 999px;
+    width: 38px; height: 38px; font-size: 1.05rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .theme-toggle:hover{ transform: scale(1.06); border-color: rgba(var(--ink-rgb),0.3); }
   h1{ font-family:'Caveat', cursive; font-weight:700; font-size:2.6rem; color: var(--chalk-yellow); margin:0 0 4px; text-align:center; }
   .subtitle{ text-align:center; color: var(--chalk-dim); font-size:0.9rem; margin:0 0 30px; }
 
@@ -25,13 +41,13 @@
   .field label{ display:block; font-size:0.78rem; color: var(--chalk-dim); margin-bottom:5px; }
   .field input{ width:100%; background: rgba(241,237,225,0.06); border:1px solid var(--panel-edge); border-radius:8px; color: var(--chalk-white); font-size:0.95rem; padding:10px 12px; outline:none; }
   .field input:focus{ border-color: var(--chalk-yellow); }
-  button{ font-family:'Work Sans', sans-serif; font-weight:600; font-size:0.88rem; padding:10px 18px; border-radius:8px; cursor:pointer; border:1px solid transparent; background: var(--chalk-yellow); color:#1d2a1f; width:100%; }
+  button{ font-family:'Work Sans', sans-serif; font-weight:600; font-size:0.88rem; padding:10px 18px; border-radius:8px; cursor:pointer; border:1px solid transparent; background: var(--chalk-yellow); color:var(--accent-ink); width:100%; }
   button.secondary{ background:transparent; border-color: var(--panel-edge); color: var(--chalk-dim); width:auto; }
   .error{ color: var(--chalk-coral); font-size:0.8rem; text-align:center; margin-top:10px; min-height:1em; }
 
   .tabs-row{ display:flex; gap:10px; margin-bottom:10px; }
   .toggle-btn{ background:transparent; border:1px solid var(--panel-edge); color: var(--chalk-dim); border-radius:999px; padding:6px 14px; font-size:0.82rem; width:auto; }
-  .toggle-btn.active{ background: var(--chalk-yellow); border-color: var(--chalk-yellow); color:#1d2a1f; font-weight:600; }
+  .toggle-btn.active{ background: var(--chalk-yellow); border-color: var(--chalk-yellow); color:var(--accent-ink); font-weight:600; }
 
   .dash-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
   .dash-header .meta{ font-size:0.85rem; color: var(--chalk-dim); }
@@ -53,8 +69,11 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>Teacher Dashboard</h1>
-  <p class="subtitle">See how your classes are getting on</p>
+  <header>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    <h1>Teacher Dashboard</h1>
+    <p class="subtitle">See how your classes are getting on</p>
+  </header>
 
   <div id="loginScreen">
     <div class="login-wrap">
@@ -122,6 +141,24 @@
 
 <script>
 (function(){
+  const THEME_KEY = 'solveit_theme';
+  const themeToggleBtn = document.getElementById('themeToggle');
+  function applyTheme(theme){
+    if(theme === 'dark'){ document.documentElement.setAttribute('data-theme', 'dark'); themeToggleBtn.textContent = '☀️'; }
+    else { document.documentElement.removeAttribute('data-theme'); themeToggleBtn.textContent = '🌙'; }
+  }
+  (function initTheme(){
+    let saved = null;
+    try{ saved = localStorage.getItem(THEME_KEY); } catch(e){}
+    applyTheme(saved === 'dark' ? 'dark' : 'light');
+  })();
+  themeToggleBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    applyTheme(next);
+    try{ localStorage.setItem(THEME_KEY, next); } catch(e){}
+  });
+
   const TOPIC_NAMES = {
     'linear-equations': 'Linear equations', 'expanding': 'Expanding & simplifying',
     'quadratic-factorising': 'Factorising quadratics', 'quadratic-solving': 'Solving quadratics',
