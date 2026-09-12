@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GCSE Quadratic Equations Practice — Free Questions | Solve It</title>
+<meta name="description" content="Free GCSE quadratic equations practice questions that regenerate every time — factorising, the quadratic formula, and completing the square. Try one live below, no signup needed." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://solveitmaths.co.uk/quadratic-equations.html" />
+<meta property="og:title" content="GCSE Quadratic Equations Practice — Solve It" />
+<meta property="og:description" content="Free, infinitely regenerating GCSE quadratic equations practice. Try a real question right now." />
+<meta property="og:image" content="https://solveitmaths.co.uk/og-image.png" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Literata:ital@1&family=Work+Sans:wght@400;500;600;700&display=swap');
+  :root{
+    --ink-rgb: 43,36,24;
+    --chalk-bg-1: #faf6ed; --chalk-bg-2: #f2ead8; --panel: #fffdf8; --panel-edge: rgba(var(--ink-rgb),0.14);
+    --chalk-white: #2b2418; --chalk-dim: rgba(var(--ink-rgb),0.62); --chalk-faint: rgba(var(--ink-rgb),0.32);
+    --chalk-yellow: #b5651d; --chalk-green: #1f7a52; --chalk-coral: #b23b2e; --accent-ink: #fffaf0;
+  }
+  [data-theme="dark"]{
+    --ink-rgb: 241,237,225;
+    --chalk-bg-1: #14231b; --chalk-bg-2: #1d3327; --panel: #223a2c;
+    --chalk-white: #f1ede1; --chalk-yellow: #e8c468; --chalk-green: #9fd8a6; --chalk-coral: #e2897b;
+    --accent-ink: #1d2a1f;
+  }
+  *{ box-sizing: border-box; }
+  html, body{ margin:0; min-height:100%; background: radial-gradient(ellipse at 20% 0%, var(--chalk-bg-2) 0%, var(--chalk-bg-1) 60%); color: var(--chalk-white); font-family:'Work Sans', sans-serif; }
+  body{ padding: 48px 20px 80px; display:flex; flex-direction:column; align-items:center; }
+  .wrap{ width:100%; max-width: 620px; }
+  header{ position: relative; width: 100%; margin-bottom: 20px; }
+  .theme-toggle{ position: absolute; top: -4px; right: 0; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 999px; width: 38px; height: 38px; font-size: 1.05rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .brand{ font-family:'Caveat', cursive; font-weight:700; font-size:2rem; color: var(--chalk-yellow); text-decoration:none; display:block; text-align:center; }
+  h1{ text-align:center; font-size:1.5rem; margin: 10px 0 8px; }
+  .intro{ text-align:center; color: var(--chalk-dim); font-size:0.92rem; line-height:1.6; margin-bottom: 30px; }
+
+  .demo-label{ text-align:center; font-size:0.76rem; color: var(--chalk-faint); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px; }
+  .demo-card{ background:#223a2c; border:1px solid rgba(241,237,225,0.14); border-radius:14px; padding:26px 24px; box-shadow: 0 24px 50px -26px rgba(0,0,0,0.5); }
+  .demo-prompt{ text-align:center; color:rgba(241,237,225,0.62); font-size:0.85rem; margin:0 0 6px; }
+  .demo-eqn{ font-family:'Literata',serif; font-style:italic; font-size:1.5rem; color:#f1ede1; text-align:center; margin:8px 0 20px; }
+  .demo-answer-row{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom: 6px; }
+  .demo-answer-row input{ width:220px; background:rgba(241,237,225,0.06); border:1px solid rgba(241,237,225,0.14); border-radius:8px; color:#f1ede1; font-family:'Literata',serif; font-size:1rem; padding:9px 12px; text-align:center; outline:none; }
+  .demo-answer-row input:focus{ border-color:#e8c468; }
+  .demo-hint{ text-align:center; font-size:0.72rem; color:rgba(241,237,225,0.4); margin-bottom:16px; }
+  .demo-actions{ display:flex; justify-content:center; gap:10px; }
+  .demo-actions button{ font-family:'Work Sans',sans-serif; font-weight:600; font-size:0.85rem; padding:9px 16px; border-radius:8px; cursor:pointer; border:1px solid transparent; }
+  .demo-mark{ background:#e8c468; color:#1d2a1f; }
+  .demo-next{ background:transparent; border-color:rgba(241,237,225,0.2); color:rgba(241,237,225,0.7); }
+  .demo-feedback{ text-align:center; margin-top:16px; min-height: 1.4em; font-weight:600; font-size:0.92rem; }
+  .demo-feedback.correct{ color:#9fd8a6; }
+  .demo-feedback.incorrect{ color:#e2897b; }
+
+  .explain{ background: var(--panel); border:1px solid var(--panel-edge); border-radius:14px; padding:24px 26px; margin: 34px 0; }
+  .explain h2{ font-size:1.05rem; margin:0 0 10px; }
+  .explain p{ font-size:0.88rem; color: var(--chalk-dim); line-height:1.65; margin:0 0 12px; }
+  .explain p:last-child{ margin-bottom:0; }
+
+  .cta{ text-align:center; margin: 40px 0; }
+  .cta a{ display:inline-block; background: var(--chalk-yellow); color: var(--accent-ink); font-weight:600; padding:14px 30px; border-radius:8px; text-decoration:none; font-size:0.95rem; }
+  .cta p{ color: var(--chalk-faint); font-size:0.78rem; margin-top:10px; }
+
+  footer{ width:100%; max-width:620px; text-align:center; margin-top:20px; padding-top:26px; border-top:1px solid var(--panel-edge); }
+  .footer-links{ font-size:0.8rem; }
+  .footer-links a{ color: var(--chalk-dim); text-decoration:none; }
+  .footer-links a:hover{ color: var(--chalk-white); text-decoration:underline; }
+  .footer-links .dot{ color: var(--chalk-faint); margin: 0 8px; }
+  .footer-copy{ font-size:0.72rem; color: var(--chalk-faint); margin-top:12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    <a href="/" class="brand">Solve It</a>
+  </header>
+  <h1>GCSE Quadratic Equations Practice</h1>
+  <p class="intro">Factorise a quadratic and solve for x — a real question, generated fresh right now, exactly as it
+    works in the app. Get one wrong and try again with a different one, for free, no signup needed.</p>
+
+  <p class="demo-label">Try it now</p>
+  <div class="demo-card">
+    <p class="demo-prompt">Solve</p>
+    <p class="demo-eqn" id="demoEqn">…</p>
+    <div class="demo-answer-row">
+      <input type="text" id="demoAnswer" autocomplete="off" placeholder="e.g. x=3 or x=-5" />
+    </div>
+    <p class="demo-hint">Format like x=3 or x=-5</p>
+    <div class="demo-actions">
+      <button class="demo-mark" id="demoMarkBtn">Mark it</button>
+      <button class="demo-next" id="demoNextBtn">New question</button>
+    </div>
+    <p class="demo-feedback" id="demoFeedback"></p>
+  </div>
+
+  <div class="explain">
+    <h2>How to solve a quadratic by factorising</h2>
+    <p>A quadratic in the form x² + bx + c = 0 can often be factorised into two brackets: (x + p)(x + q) = 0, where
+      p and q are two numbers that <strong>multiply to give c</strong> and <strong>add to give b</strong>.</p>
+    <p>Once factorised, each bracket can independently equal zero — so if (x + p)(x + q) = 0, then either x = −p or
+      x = −q. Those are your two solutions.</p>
+    <p>This app also covers the quadratic formula and completing the square, for quadratics that don't factorise
+      neatly — both included in the full topic, along with 91 other GCSE question types.</p>
+  </div>
+
+  <div class="cta">
+    <a href="/signup.html?src=quadratic-equations">Unlock all 39 topics — 7 days free</a>
+    <p>£4.99/month after your trial — cancel any time.</p>
+  </div>
+</div>
+<footer>
+  <div class="footer-links">
+    <a href="/signup.html">Home</a> <span class="dot">·</span> <a href="/topics.html">All topics</a> <span class="dot">·</span> <a href="/privacy.html">Privacy Policy</a> <span class="dot">·</span> <a href="/terms.html">Terms of Service</a>
+  </div>
+  <p class="footer-copy">© 2026 Solve It Maths. All rights reserved.</p>
+</footer>
+<script>
+(function(){
+  // Anonymous page-view log — no cookies, no visitor ID. Fire-and-forget,
+  // never blocks or breaks the page if it fails.
+  try{
+    fetch('/api/analytics/pageview', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ page: 'quadratic-equations' }),
+    }).catch(() => {});
+  } catch(e){}
+
+  const THEME_KEY = 'solveit_theme';
+  const themeBtn = document.getElementById('themeToggle');
+  function applyTheme(theme){
+    if(theme === 'dark'){ document.documentElement.setAttribute('data-theme', 'dark'); themeBtn.textContent = '☀️'; }
+    else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent = '🌙'; }
+  }
+  (function initTheme(){
+    let saved = null;
+    try{ saved = localStorage.getItem(THEME_KEY); } catch(e){}
+    applyTheme(saved === 'dark' ? 'dark' : 'light');
+  })();
+  themeBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    applyTheme(next);
+    try{ localStorage.setItem(THEME_KEY, next); } catch(e){}
+  });
+
+  // ============================================================
+  // DEMO WIDGET — exact copies of the real, already-tested engine
+  // functions (public/index.html). If these drift from the real
+  // engine, copy them fresh from there rather than editing by hand.
+  // ============================================================
+  function randNonZero(min, max){ let v = 0; while(v === 0) v = Math.floor(Math.random() * (max - min + 1)) + min; return v; }
+  function fmtAdd(n, letter){ letter = letter || ''; return (n >= 0 ? ' + ' : ' - ') + Math.abs(n) + letter; }
+  function fmtQuadraticExpr(b, c){
+    const bStr = b === 0 ? '' : (b >= 0 ? ' + ' + b + 'x' : ' - ' + Math.abs(b) + 'x');
+    const cStr = c === 0 ? '' : (c >= 0 ? ' + ' + c : ' - ' + Math.abs(c));
+    return 'x²' + bStr + cStr;
+  }
+  function buildQuadraticSolve(p, q){
+    const b = p + q, c = p * q;
+    const target = [-p, -q].sort((x, y) => x - y).join(',');
+    return { eqn: fmtQuadraticExpr(b, c) + ' = 0', answerDisplay: 'x = ' + (-p) + ' or x = ' + (-q),
+      checkAnswer: function(raw){
+        const nums = (raw.match(/-?\d+(\.\d+)?/g) || []).map(Number);
+        if(nums.length < 2) return false;
+        return [nums[0], nums[1]].sort((x, y) => x - y).join(',') === target;
+      } };
+  }
+  function genDemoQuadratic(){ return buildQuadraticSolve(randNonZero(1, 9), randNonZero(1, 9)); }
+
+  let demoCurrent = null;
+  const demoEls = {
+    eqn: document.getElementById('demoEqn'),
+    answer: document.getElementById('demoAnswer'),
+    markBtn: document.getElementById('demoMarkBtn'),
+    nextBtn: document.getElementById('demoNextBtn'),
+    feedback: document.getElementById('demoFeedback'),
+  };
+  function newDemoQuestion(){
+    demoCurrent = genDemoQuadratic();
+    demoEls.eqn.textContent = demoCurrent.eqn;
+    demoEls.answer.value = '';
+    demoEls.answer.disabled = false;
+    demoEls.markBtn.disabled = false;
+    demoEls.feedback.textContent = '';
+    demoEls.feedback.className = 'demo-feedback';
+    demoEls.answer.focus();
+  }
+  function markDemo(){
+    if(!demoEls.answer.value.trim()) { demoEls.answer.focus(); return; }
+    const correct = demoCurrent.checkAnswer(demoEls.answer.value);
+    demoEls.feedback.textContent = correct ? 'Correct! 🎉' : 'Not quite — the answer was ' + demoCurrent.answerDisplay;
+    demoEls.feedback.className = 'demo-feedback ' + (correct ? 'correct' : 'incorrect');
+    demoEls.answer.disabled = true;
+    demoEls.markBtn.disabled = true;
+  }
+  demoEls.markBtn.addEventListener('click', markDemo);
+  demoEls.nextBtn.addEventListener('click', newDemoQuestion);
+  demoEls.answer.addEventListener('keydown', (e) => { if(e.key === 'Enter' && !demoEls.markBtn.disabled) markDemo(); });
+  newDemoQuestion();
+})();
+</script>
+</body>
+</html>
