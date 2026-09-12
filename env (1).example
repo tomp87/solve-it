@@ -1,0 +1,44 @@
+# Copy this file to .env for local testing (never commit the real .env file).
+# In production (Render/Railway/etc.) you'll set these as dashboard environment
+# variables instead of using a file.
+
+# Your Supabase (or any Postgres) connection string.
+# In Supabase: Project Settings -> Database -> Connection string -> URI
+DATABASE_URL=postgres://user:password@host:5432/dbname
+
+# Your Anthropic API key, from console.anthropic.com (Settings -> API Keys).
+# This is a SEPARATE thing from your claude.ai subscription — it's pay-per-use
+# and needs its own billing set up. Required for the "Ask for help" tutor;
+# everything else in the app works fine without it.
+ANTHROPIC_API_KEY=sk-ant-xxxxxxxxxxxxxxxxxxxxxxxx
+
+# Optional — most hosts set this automatically.
+PORT=3000
+
+# --- Needed for paid subscriptions (skip all of this if you're only running
+# the free school/teacher pilot — everything above still works without it) ---
+
+# From your Stripe Dashboard: Developers -> API keys -> Secret key
+STRIPE_SECRET_KEY=sk_test_xxxxxxxxxxxxxxxxxxxxxxxx
+
+# From Stripe Dashboard: Product catalog -> create a Product with a recurring
+# Price -> copy that Price's ID (starts with price_)
+STRIPE_PRICE_ID=price_xxxxxxxxxxxxxxxxxxxxxxxx
+
+# From Stripe Dashboard: Developers -> Webhooks -> add endpoint
+# (https://your-app.onrender.com/api/stripe/webhook) -> reveal signing secret
+STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxxxxxxxxxxxxx
+
+# Your app's real public URL (no trailing slash) — used to build the
+# Stripe Checkout success/cancel redirect links.
+PUBLIC_BASE_URL=https://your-app.onrender.com
+
+# Optional — length of the free trial in days before the first charge.
+# Set to 0 to disable the trial entirely (charge immediately on signup).
+# Defaults to 7 if not set.
+TRIAL_DAYS=7
+
+# Required only if you want to view the /analytics.html dashboard — pick any
+# long random string. This gates access to your (anonymous, aggregate-only)
+# conversion stats, so nobody else can view them without this key.
+ANALYTICS_SECRET=choose-a-long-random-string-here
