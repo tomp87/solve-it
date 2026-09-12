@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GCSE Trigonometry Practice — SOHCAHTOA Questions | Solve It</title>
+<meta name="description" content="Free GCSE trigonometry (SOHCAHTOA) practice questions with real drawn triangle diagrams, regenerating every time. Try one live below, no signup needed." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://solveitmaths.co.uk/trigonometry.html" />
+<meta property="og:title" content="GCSE Trigonometry Practice — Solve It" />
+<meta property="og:description" content="Free, infinitely regenerating GCSE trigonometry practice with real diagrams. Try a real question right now." />
+<meta property="og:image" content="https://solveitmaths.co.uk/og-image.png" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Literata:ital@1&family=Work+Sans:wght@400;500;600;700&display=swap');
+  :root{
+    --ink-rgb: 43,36,24;
+    --chalk-bg-1: #faf6ed; --chalk-bg-2: #f2ead8; --panel: #fffdf8; --panel-edge: rgba(var(--ink-rgb),0.14);
+    --chalk-white: #2b2418; --chalk-dim: rgba(var(--ink-rgb),0.62); --chalk-faint: rgba(var(--ink-rgb),0.32);
+    --chalk-yellow: #b5651d; --chalk-green: #1f7a52; --chalk-coral: #b23b2e; --accent-ink: #fffaf0;
+  }
+  [data-theme="dark"]{
+    --ink-rgb: 241,237,225;
+    --chalk-bg-1: #14231b; --chalk-bg-2: #1d3327; --panel: #223a2c;
+    --chalk-white: #f1ede1; --chalk-yellow: #e8c468; --chalk-green: #9fd8a6; --chalk-coral: #e2897b;
+    --accent-ink: #1d2a1f;
+  }
+  *{ box-sizing: border-box; }
+  html, body{ margin:0; min-height:100%; background: radial-gradient(ellipse at 20% 0%, var(--chalk-bg-2) 0%, var(--chalk-bg-1) 60%); color: var(--chalk-white); font-family:'Work Sans', sans-serif; }
+  body{ padding: 48px 20px 80px; display:flex; flex-direction:column; align-items:center; }
+  .wrap{ width:100%; max-width: 620px; }
+  header{ position: relative; width: 100%; margin-bottom: 20px; }
+  .theme-toggle{ position: absolute; top: -4px; right: 0; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 999px; width: 38px; height: 38px; font-size: 1.05rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .brand{ font-family:'Caveat', cursive; font-weight:700; font-size:2rem; color: var(--chalk-yellow); text-decoration:none; display:block; text-align:center; }
+  h1{ text-align:center; font-size:1.5rem; margin: 10px 0 8px; }
+  .intro{ text-align:center; color: var(--chalk-dim); font-size:0.92rem; line-height:1.6; margin-bottom: 30px; }
+
+  .demo-label{ text-align:center; font-size:0.76rem; color: var(--chalk-faint); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px; }
+  .demo-card{ background:#223a2c; border:1px solid rgba(241,237,225,0.14); border-radius:14px; padding:26px 24px; box-shadow: 0 24px 50px -26px rgba(0,0,0,0.5); }
+  .demo-prompt{ text-align:center; color:rgba(241,237,225,0.62); font-size:0.85rem; margin:0 0 14px; }
+  .demo-diagram{ text-align:center; margin-bottom: 16px; }
+  .demo-answer-row{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom: 6px; }
+  .demo-answer-row label{ font-family:'Literata',serif; font-style:italic; color:rgba(241,237,225,0.62); }
+  .demo-answer-row input{ width:150px; background:rgba(241,237,225,0.06); border:1px solid rgba(241,237,225,0.14); border-radius:8px; color:#f1ede1; font-family:'Literata',serif; font-size:1rem; padding:9px 12px; text-align:center; outline:none; }
+  .demo-answer-row input:focus{ border-color:#e8c468; }
+  .demo-hint{ text-align:center; font-size:0.72rem; color:rgba(241,237,225,0.4); margin-bottom:16px; }
+  .demo-actions{ display:flex; justify-content:center; gap:10px; }
+  .demo-actions button{ font-family:'Work Sans',sans-serif; font-weight:600; font-size:0.85rem; padding:9px 16px; border-radius:8px; cursor:pointer; border:1px solid transparent; }
+  .demo-mark{ background:#e8c468; color:#1d2a1f; }
+  .demo-next{ background:transparent; border-color:rgba(241,237,225,0.2); color:rgba(241,237,225,0.7); }
+  .demo-feedback{ text-align:center; margin-top:16px; min-height: 1.4em; font-weight:600; font-size:0.92rem; }
+  .demo-feedback.correct{ color:#9fd8a6; }
+  .demo-feedback.incorrect{ color:#e2897b; }
+
+  .explain{ background: var(--panel); border:1px solid var(--panel-edge); border-radius:14px; padding:24px 26px; margin: 34px 0; }
+  .explain h2{ font-size:1.05rem; margin:0 0 10px; }
+  .explain p{ font-size:0.88rem; color: var(--chalk-dim); line-height:1.65; margin:0 0 12px; }
+  .explain p:last-child{ margin-bottom:0; }
+  .explain .sohcahtoa{ font-family:'Literata',serif; font-style:italic; color: var(--chalk-yellow); text-align:center; font-size:1.05rem; margin: 14px 0; }
+
+  .cta{ text-align:center; margin: 40px 0; }
+  .cta a{ display:inline-block; background: var(--chalk-yellow); color: var(--accent-ink); font-weight:600; padding:14px 30px; border-radius:8px; text-decoration:none; font-size:0.95rem; }
+  .cta p{ color: var(--chalk-faint); font-size:0.78rem; margin-top:10px; }
+
+  footer{ width:100%; max-width:620px; text-align:center; margin-top:20px; padding-top:26px; border-top:1px solid var(--panel-edge); }
+  .footer-links{ font-size:0.8rem; }
+  .footer-links a{ color: var(--chalk-dim); text-decoration:none; }
+  .footer-links a:hover{ color: var(--chalk-white); text-decoration:underline; }
+  .footer-links .dot{ color: var(--chalk-faint); margin: 0 8px; }
+  .footer-copy{ font-size:0.72rem; color: var(--chalk-faint); margin-top:12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    <a href="/" class="brand">Solve It</a>
+  </header>
+  <h1>GCSE Trigonometry Practice</h1>
+  <p class="intro">Find a missing side using SOHCAHTOA — a real question, with a real drawn diagram, generated fresh
+    right now exactly as it works in the app. Get one wrong and try again with a different one, for free, no signup
+    needed.</p>
+
+  <p class="demo-label">Try it now</p>
+  <div class="demo-card">
+    <p class="demo-prompt" id="demoPrompt">Work out the length of the marked side (1 dp)</p>
+    <div class="demo-diagram" id="demoDiagram"></div>
+    <div class="demo-answer-row">
+      <label for="demoAnswer">=</label>
+      <input type="text" id="demoAnswer" autocomplete="off" />
+    </div>
+    <p class="demo-hint">Give your answer as a number (cm)</p>
+    <div class="demo-actions">
+      <button class="demo-mark" id="demoMarkBtn">Mark it</button>
+      <button class="demo-next" id="demoNextBtn">New question</button>
+    </div>
+    <p class="demo-feedback" id="demoFeedback"></p>
+  </div>
+
+  <div class="explain">
+    <h2>SOHCAHTOA, in one line</h2>
+    <div class="sohcahtoa">sin(θ) = opp/hyp &nbsp;·&nbsp; cos(θ) = adj/hyp &nbsp;·&nbsp; tan(θ) = opp/adj</div>
+    <p>In a right-angled triangle, once you know one angle (other than the right angle) and one side, you can find
+      any other side using the correct ratio above — whichever one connects the side you know to the side you want.</p>
+    <p>The trick is identifying which sides are "opposite," "adjacent," and "hypotenuse" relative to the angle
+      you're given — the hypotenuse is always the longest side, opposite the right angle, and the other two swap
+      roles depending on which angle you're looking from.</p>
+    <p>The full app also covers finding missing angles, 3D trigonometry, and the sine and cosine rules for
+      non-right-angled triangles — part of 39 topics and 93 question types in total.</p>
+  </div>
+
+  <div class="cta">
+    <a href="/signup.html">Unlock all 39 topics — 7 days free</a>
+    <p>£4.99/month after your trial — cancel any time.</p>
+  </div>
+</div>
+<footer>
+  <div class="footer-links">
+    <a href="/signup.html">Home</a> <span class="dot">·</span> <a href="/topics.html">All topics</a> <span class="dot">·</span> <a href="/privacy.html">Privacy Policy</a> <span class="dot">·</span> <a href="/terms.html">Terms of Service</a>
+  </div>
+  <p class="footer-copy">© 2026 Solve It Maths. All rights reserved.</p>
+</footer>
+<script>
+(function(){
+  // Anonymous page-view log — no cookies, no visitor ID. Fire-and-forget,
+  // never blocks or breaks the page if it fails.
+  try{
+    fetch('/api/analytics/pageview', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ page: 'trigonometry' }),
+    }).catch(() => {});
+  } catch(e){}
+
+  const THEME_KEY = 'solveit_theme';
+  const themeBtn = document.getElementById('themeToggle');
+  function applyTheme(theme){
+    if(theme === 'dark'){ document.documentElement.setAttribute('data-theme', 'dark'); themeBtn.textContent = '☀️'; }
+    else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent = '🌙'; }
+  }
+  (function initTheme(){
+    let saved = null;
+    try{ saved = localStorage.getItem(THEME_KEY); } catch(e){}
+    applyTheme(saved === 'dark' ? 'dark' : 'light');
+  })();
+  themeBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    applyTheme(next);
+    try{ localStorage.setItem(THEME_KEY, next); } catch(e){}
+  });
+
+  // ============================================================
+  // DEMO WIDGET — exact copies of the real, already-tested engine
+  // functions (public/index.html). If these drift from the real
+  // engine, copy them fresh from there rather than editing by hand.
+  // ============================================================
+  function randInt(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
+  function round1dp(v){ return Math.round(v * 10) / 10; }
+  function toXY(cx, cy, r, deg){ const rad = deg * Math.PI / 180; return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)]; }
+  function degBetween(x1, y1, x2, y2){ return Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI; }
+  function arcBisectorDeg(deg1, deg2){
+    let diff = deg2 - deg1;
+    while(diff > 180) diff -= 360;
+    while(diff < -180) diff += 360;
+    return deg1 + diff / 2;
+  }
+  function describeArc(cx, cy, r, deg1, deg2, steps){
+    let diff = deg2 - deg1;
+    while(diff > 180) diff -= 360;
+    while(diff < -180) diff += 360;
+    const pts = [];
+    for(let i = 0; i <= steps; i++){
+      const t = (deg1 + diff * (i / steps)) * Math.PI / 180;
+      pts.push((cx + r * Math.cos(t)).toFixed(1) + ',' + (cy + r * Math.sin(t)).toFixed(1));
+    }
+    return pts.join(' ');
+  }
+  function numericChecker(answerValue, tolerance){
+    tolerance = tolerance || 1e-6;
+    return function(raw){
+      const s = raw.trim();
+      if(s === '') return false;
+      const val = parseFloat(s);
+      return !isNaN(val) && Math.abs(val - answerValue) < tolerance;
+    };
+  }
+  const TRIG_ANGLES = [30, 45, 60];
+  function trigValues(deg){ const rad = deg * Math.PI / 180; return { sin: Math.sin(rad), cos: Math.cos(rad), tan: Math.tan(rad) }; }
+  function buildRightTriangleAngleSVG(adjLen, oppLen, angleDeg, labelAdj, labelOpp, labelHyp){
+    const maxDim = 155;
+    const scale = maxDim / Math.max(adjLen, oppLen);
+    const ax = Math.max(adjLen * scale, 72), by = Math.max(oppLen * scale, 72);
+    const padX = 55, padY = 42;
+    const width = ax + padX * 2, height = by + padY * 2;
+    const x0 = padX, y0 = height - padY, x1 = x0 + ax, y1 = y0, x2 = x0, y2 = y0 - by;
+    const rsize = Math.min(14, ax * 0.2, by * 0.2);
+    const r = Math.min(26, ax * 0.35);
+    const degToV0 = degBetween(x1, y1, x0, y0), degToV2 = degBetween(x1, y1, x2, y2);
+    const arcPts = describeArc(x1, y1, r, degToV0, degToV2, 10);
+    const [alx, aly] = toXY(x1, y1, r + 18, arcBisectorDeg(degToV0, degToV2));
+    const col = (l) => l.color || '#f1ede1';
+    return '<svg viewBox="0 0 ' + width + ' ' + height + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px;height:auto;display:block;margin:0 auto;">' +
+      '<polygon points="' + x0 + ',' + y0 + ' ' + x1 + ',' + y1 + ' ' + x2 + ',' + y2 + '" fill="rgba(232,196,104,0.10)" stroke="#f1ede1" stroke-width="2" stroke-linejoin="round"/>' +
+      '<path d="M ' + x0 + ' ' + (y0 - rsize) + ' L ' + (x0 + rsize) + ' ' + (y0 - rsize) + ' L ' + (x0 + rsize) + ' ' + y0 + '" fill="none" stroke="#f1ede1" stroke-width="1.5"/>' +
+      '<polyline points="' + arcPts + '" fill="none" stroke="#e8c468" stroke-width="1.5"/>' +
+      '<text x="' + alx + '" y="' + aly + '" fill="#f1ede1" font-size="13" font-family="Work Sans, sans-serif" text-anchor="middle">' + angleDeg + '°</text>' +
+      '<text x="' + ((x0 + x1) / 2) + '" y="' + (y0 + 22) + '" fill="' + col(labelAdj) + '" font-size="15" font-family="Literata, serif" font-style="italic" text-anchor="middle">' + labelAdj.text + '</text>' +
+      '<text x="' + (x0 - 12) + '" y="' + ((y0 + y2) / 2) + '" fill="' + col(labelOpp) + '" font-size="15" font-family="Literata, serif" font-style="italic" text-anchor="end" dominant-baseline="middle">' + labelOpp.text + '</text>' +
+      '<text x="' + ((x1 + x2) / 2 + 14) + '" y="' + ((y1 + y2) / 2 - 2) + '" fill="' + col(labelHyp) + '" font-size="15" font-family="Literata, serif" font-style="italic" text-anchor="start">' + labelHyp.text + '</text>' +
+      '</svg>';
+  }
+  function genDemoTrig(){
+    const angleDeg = TRIG_ANGLES[randInt(0, 2)];
+    const { sin, cos } = trigValues(angleDeg);
+    const hyp = randInt(2, 10) * 2;
+    const opp = hyp * sin, adj = hyp * cos;
+    const askOpposite = Math.random() < 0.5;
+    const target = round1dp(askOpposite ? opp : adj);
+    const labelAdj = askOpposite ? { text: '' } : { text: '?', color: '#e8c468' };
+    const labelOpp = askOpposite ? { text: '?', color: '#e8c468' } : { text: '' };
+    const diagram = buildRightTriangleAngleSVG(adj, opp, angleDeg, labelAdj, labelOpp, { text: hyp + ' cm' });
+    return { diagram, answerDisplay: String(target), checkAnswer: numericChecker(target, 0.06) };
+  }
+
+  let demoCurrent = null;
+  const demoEls = {
+    diagram: document.getElementById('demoDiagram'),
+    answer: document.getElementById('demoAnswer'),
+    markBtn: document.getElementById('demoMarkBtn'),
+    nextBtn: document.getElementById('demoNextBtn'),
+    feedback: document.getElementById('demoFeedback'),
+  };
+  function newDemoQuestion(){
+    demoCurrent = genDemoTrig();
+    demoEls.diagram.innerHTML = demoCurrent.diagram;
+    demoEls.answer.value = '';
+    demoEls.answer.disabled = false;
+    demoEls.markBtn.disabled = false;
+    demoEls.feedback.textContent = '';
+    demoEls.feedback.className = 'demo-feedback';
+    demoEls.answer.focus();
+  }
+  function markDemo(){
+    if(!demoEls.answer.value.trim()) { demoEls.answer.focus(); return; }
+    const correct = demoCurrent.checkAnswer(demoEls.answer.value);
+    demoEls.feedback.textContent = correct ? 'Correct! 🎉' : 'Not quite — the answer was ' + demoCurrent.answerDisplay + ' cm';
+    demoEls.feedback.className = 'demo-feedback ' + (correct ? 'correct' : 'incorrect');
+    demoEls.answer.disabled = true;
+    demoEls.markBtn.disabled = true;
+  }
+  demoEls.markBtn.addEventListener('click', markDemo);
+  demoEls.nextBtn.addEventListener('click', newDemoQuestion);
+  demoEls.answer.addEventListener('keydown', (e) => { if(e.key === 'Enter' && !demoEls.markBtn.disabled) markDemo(); });
+  newDemoQuestion();
+})();
+</script>
+</body>
+</html>
