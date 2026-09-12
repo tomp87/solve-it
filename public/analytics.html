@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Analytics — Solve It</title>
+<meta name="robots" content="noindex" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Work+Sans:wght@400;500;600;700&display=swap');
+  :root{
+    --ink-rgb: 43,36,24;
+    --chalk-bg-1: #faf6ed; --chalk-bg-2: #f2ead8; --panel: #fffdf8; --panel-edge: rgba(var(--ink-rgb),0.14);
+    --chalk-white: #2b2418; --chalk-dim: rgba(var(--ink-rgb),0.62); --chalk-faint: rgba(var(--ink-rgb),0.32);
+    --chalk-yellow: #b5651d; --chalk-green: #1f7a52; --accent-ink: #fffaf0;
+  }
+  [data-theme="dark"]{
+    --ink-rgb: 241,237,225;
+    --chalk-bg-1: #14231b; --chalk-bg-2: #1d3327; --panel: #223a2c;
+    --chalk-white: #f1ede1; --chalk-yellow: #e8c468; --chalk-green: #9fd8a6; --accent-ink: #1d2a1f;
+  }
+  *{ box-sizing: border-box; }
+  html, body{ margin:0; min-height:100%; background: radial-gradient(ellipse at 20% 0%, var(--chalk-bg-2) 0%, var(--chalk-bg-1) 60%); color: var(--chalk-white); font-family:'Work Sans', sans-serif; }
+  body{ padding: 48px 20px; display:flex; flex-direction:column; align-items:center; }
+  .wrap{ width:100%; max-width: 700px; }
+  h1{ font-family:'Caveat', cursive; font-weight:700; font-size:2.2rem; color: var(--chalk-yellow); text-align:center; margin:0 0 30px; }
+
+  .key-card{ background: var(--panel); border:1px solid var(--panel-edge); border-radius:14px; padding:26px; text-align:center; }
+  .key-card input{ width:100%; max-width:320px; background:rgba(var(--ink-rgb),0.05); border:1px solid var(--panel-edge); border-radius:8px; color: var(--chalk-white); font-size:0.95rem; padding:10px 14px; text-align:center; outline:none; margin: 12px 0; }
+  .key-card button{ background: var(--chalk-yellow); color: var(--accent-ink); font-weight:600; border:none; border-radius:8px; padding:10px 22px; cursor:pointer; font-size:0.9rem; }
+  .error{ color:#b23b2e; font-size:0.85rem; margin-top:10px; }
+
+  .funnel{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-bottom: 24px; }
+  .funnel-card{ background: var(--panel); border:1px solid var(--panel-edge); border-radius:12px; padding:20px; text-align:center; }
+  .funnel-card .num{ font-family:'Caveat',cursive; font-size:2.2rem; color: var(--chalk-yellow); }
+  .funnel-card .label{ font-size:0.78rem; color: var(--chalk-dim); }
+  .funnel-card .rate{ font-size:0.7rem; color: var(--chalk-faint); margin-top:4px; }
+
+  .section-title{ font-size:0.85rem; font-weight:600; margin: 26px 0 10px; color: var(--chalk-dim); text-transform:uppercase; letter-spacing:0.04em; }
+  .page-table{ background: var(--panel); border:1px solid var(--panel-edge); border-radius:12px; overflow:hidden; }
+  .page-row{ display:flex; justify-content:space-between; padding:10px 18px; border-bottom:1px solid var(--panel-edge); font-size:0.88rem; }
+  .page-row:last-child{ border-bottom:none; }
+  .page-row .count{ color: var(--chalk-yellow); font-weight:600; }
+  .hidden{ display:none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Solve It — Analytics</h1>
+
+  <div class="key-card" id="keyCard">
+    <p>Enter your analytics key to view stats.</p>
+    <input type="password" id="keyInput" placeholder="Analytics key" />
+    <br/>
+    <button id="viewBtn">View stats</button>
+    <p class="error" id="keyError"></p>
+  </div>
+
+  <div id="statsView" class="hidden">
+    <div class="section-title">Last 7 days</div>
+    <div class="funnel" id="funnel7"></div>
+
+    <div class="section-title">All time</div>
+    <div class="funnel" id="funnelAll"></div>
+
+    <div class="section-title">Page views by page (all time)</div>
+    <div class="page-table" id="pageTable"></div>
+  </div>
+</div>
+<script>
+(function(){
+  const els = {
+    keyCard: document.getElementById('keyCard'),
+    keyInput: document.getElementById('keyInput'),
+    viewBtn: document.getElementById('viewBtn'),
+    keyError: document.getElementById('keyError'),
+    statsView: document.getElementById('statsView'),
+    funnel7: document.getElementById('funnel7'),
+    funnelAll: document.getElementById('funnelAll'),
+    pageTable: document.getElementById('pageTable'),
+  };
+
+  function sumByType(rows, type){ return rows.filter(r => r.eventType === type).reduce((s, r) => s + r.count, 0); }
+  function pct(a, b){ return b > 0 ? Math.round((a / b) * 100) + '%' : '—'; }
+
+  function renderFunnel(container, rows){
+    const views = sumByType(rows, 'page_view');
+    const started = sumByType(rows, 'checkout_started');
+    const converted = sumByType(rows, 'converted');
+    container.innerHTML =
+      '<div class="funnel-card"><div class="num">' + views + '</div><div class="label">Page views</div></div>' +
+      '<div class="funnel-card"><div class="num">' + started + '</div><div class="label">Checkout started</div><div class="rate">' + pct(started, views) + ' of views</div></div>' +
+      '<div class="funnel-card"><div class="num">' + converted + '</div><div class="label">Converted</div><div class="rate">' + pct(converted, started) + ' of starts</div></div>';
+  }
+
+  function renderPageTable(rows){
+    const pageViews = rows.filter(r => r.eventType === 'page_view' && r.page);
+    if(pageViews.length === 0){ els.pageTable.innerHTML = '<div class="page-row">No page-level data yet.</div>'; return; }
+    els.pageTable.innerHTML = pageViews
+      .sort((a, b) => b.count - a.count)
+      .map(r => '<div class="page-row"><span>' + r.page + '</span><span class="count">' + r.count + '</span></div>')
+      .join('');
+  }
+
+  async function loadStats(key){
+    els.keyError.textContent = '';
+    try{
+      const res = await fetch('/api/analytics/summary?key=' + encodeURIComponent(key));
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.error || 'Could not load stats');
+      renderFunnel(els.funnel7, data.last7Days);
+      renderFunnel(els.funnelAll, data.allTime);
+      renderPageTable(data.allTime);
+      els.keyCard.classList.add('hidden');
+      els.statsView.classList.remove('hidden');
+      try{ sessionStorage.setItem('solveit_analytics_key', key); } catch(e){}
+    } catch(e){
+      els.keyError.textContent = e.message;
+    }
+  }
+
+  els.viewBtn.addEventListener('click', () => loadStats(els.keyInput.value.trim()));
+  els.keyInput.addEventListener('keydown', (e) => { if(e.key === 'Enter') loadStats(els.keyInput.value.trim()); });
+
+  // Convenience: remember the key for this browser tab session only (not
+  // persisted beyond that), so refreshing doesn't require retyping it.
+  try{
+    const saved = sessionStorage.getItem('solveit_analytics_key');
+    if(saved) loadStats(saved);
+  } catch(e){}
+})();
+</script>
+</body>
+</html>
