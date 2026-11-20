@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video lessons · Solve It</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Literata:wght@400;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#faf6ed;--bg2:#f2ead8;--card:#fffdf8;--text:#2b2418;--muted:#6b604d;--accent:#b5651d;--line:rgba(43,36,24,.14)}
+@media (prefers-color-scheme:dark){:root{--bg1:#14231b;--bg2:#1d3327;--card:#223a2c;--text:#f1ede1;--muted:#b6c0b3;--accent:#e8c468;--line:rgba(241,237,225,.14)}}
+html[data-theme="dark"]{--bg1:#14231b;--bg2:#1d3327;--card:#223a2c;--text:#f1ede1;--muted:#b6c0b3;--accent:#e8c468;--line:rgba(241,237,225,.14)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(var(--bg1),var(--bg2));color:var(--text);font-family:'Literata',Georgia,serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 16px 60px}
+h1{font:700 44px 'Caveat',cursive;margin:0 0 6px}
+.lead{color:var(--muted);font-family:'Work Sans',sans-serif;margin:0 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;color:inherit;text-decoration:none;font-family:'Work Sans',sans-serif}
+.card:hover{border-color:var(--accent)}
+.card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--bg2)}
+.card .b{padding:12px 14px}
+.card h2{font:600 17px 'Work Sans',sans-serif;margin:0 0 4px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.empty{color:var(--muted);font-family:'Work Sans',sans-serif}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Video lessons</h1>
+  <p class="lead">Short lessons with an AI tutor beside the video. Pause at any point and ask about that exact moment.</p>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>No lessons yet. Check back soon.</p>
+</div>
+<script>
+(function(){
+  function fmt(s){s=Math.round(s||0);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+  fetch('/api/lessons').then(function(r){return r.json();}).then(function(d){
+    var list=(d&&d.lessons)||[],g=document.getElementById('grid');
+    if(!list.length){document.getElementById('empty').hidden=false;return;}
+    list.forEach(function(L){
+      var a=document.createElement('a');a.className='card';a.href='/lesson/'+encodeURIComponent(L.id);
+      var img=L.youtubeId?'<img alt="" loading="lazy" src="https://i.ytimg.com/vi/'+encodeURIComponent(L.youtubeId)+'/hqdefault.jpg">':'';
+      a.innerHTML=img+'<div class="b"><h2></h2><p></p></div>';
+      a.querySelector('h2').textContent=L.title;
+      a.querySelector('p').textContent=fmt(L.duration)+' · '+String(L.topic||'').replace(/-/g,' ');
+      g.appendChild(a);
+    });
+  }).catch(function(){document.getElementById('empty').hidden=false;});
+})();
+</script>
+<script src="/nav.js" defer></script>
+</body>
+</html>
