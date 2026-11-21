@@ -1,0 +1,180 @@
+{
+ "id": "area-of-a-circle",
+ "title": "Area of a circle",
+ "topic": "area-perimeter",
+ "youtubeId": "Sj4K0CVbVX8",
+ "duration": 203.25,
+ "chapters": [
+  {
+   "name": "Intro",
+   "start": 0
+  },
+  {
+   "name": "The Picture",
+   "start": 10.5
+  },
+  {
+   "name": "The Method",
+   "start": 65
+  },
+  {
+   "name": "Diameter Trap",
+   "start": 89.5
+  },
+  {
+   "name": "Semicircles",
+   "start": 103
+  },
+  {
+   "name": "Sectors",
+   "start": 118.25
+  },
+  {
+   "name": "Backwards",
+   "start": 137.25
+  },
+  {
+   "name": "Exam Tips",
+   "start": 153.5
+  },
+  {
+   "name": "Your Turn",
+   "start": 165.25
+  }
+ ],
+ "beats": [
+  {
+   "start": 0,
+   "end": 10.5,
+   "chapter": "Intro",
+   "title": "Intro: Why πr²?",
+   "says": "Everyone learns that the area of a circle is π r squared. Almost nobody is shown why. Give me five minutes, and you'll never forget it, or how to use it in the exam.",
+   "onScreen": "Circle slices: a circle cut up and rearranged."
+  },
+  {
+   "start": 10.5,
+   "end": 24.5,
+   "chapter": "The Picture",
+   "title": "The Picture: The Parts",
+   "says": "First, the parts. The radius, r, goes from the centre to the edge. The diameter goes all the way across, so it's two radiuses. And the distance around the outside, the circumference, is 2πr.",
+   "onScreen": "Circle diagram: radius r, circumference highlighted",
+   "key": "Radius = centre to edge. Diameter = 2 × radius."
+  },
+  {
+   "start": 24.5,
+   "end": 29.5,
+   "chapter": "The Picture",
+   "title": "The Picture: Slice It",
+   "says": "Now cut the circle into slices, like a pizza. Let's start with eight.",
+   "onScreen": "Circle cut into 8 slices."
+  },
+  {
+   "start": 29.5,
+   "end": 41.25,
+   "chapter": "The Picture",
+   "title": "The Picture: Rearrange",
+   "says": "Lay the slices side by side, one pointing up, the next pointing down. Half of them have their crust along the top, half along the bottom. It looks a bit wobbly, but it's almost a rectangle.",
+   "onScreen": "Slices rearranged, 8 slices."
+  },
+  {
+   "start": 41.25,
+   "end": 50.25,
+   "chapter": "The Picture",
+   "title": "The Picture: More Slices",
+   "says": "Use more slices, and the wobbly edges get flatter. Sixteen, thirty-two, sixty-four. Keep going, and it becomes a perfect rectangle.",
+   "onScreen": "More slices: 8 to 64."
+  },
+  {
+   "start": 50.25,
+   "end": 65,
+   "chapter": "The Picture",
+   "title": "The Picture: The Rectangle",
+   "says": "So how big is the rectangle? Its height is one slice, the radius, r. Its width is half the crust: half the circumference, which is πr. Width times height: πr times r. That's πr squared.",
+   "onScreen": "Rectangle labelled, 64 slices.",
+   "key": "Area of a circle = πr² (half the circumference × radius)."
+  },
+  {
+   "start": 65,
+   "end": 80.75,
+   "chapter": "The Method",
+   "title": "The Method: Example",
+   "says": "Let's use it. A circle with radius 5 centimetres. Square the radius first: 5 squared is 25. Then times by π: 25π. On a calculator that's 78.5 square centimetres, to one decimal place.",
+   "onScreen": "Circle diagram: radius 5 cm | A = π × 5² | = 25π // square first, then × π | ≈ 78.5 cm²",
+   "key": "Square the radius first, then multiply by π."
+  },
+  {
+   "start": 80.75,
+   "end": 89.5,
+   "chapter": "The Method",
+   "title": "The Method: In Terms of π",
+   "says": "If the question says give your answer in terms of π, just stop at 25π. No calculator, no rounding. It's exact.",
+   "onScreen": "Worked: A = 25π cm² // \"in terms of π\": stop here | ≈ 78.5 cm² // only if it asks for a decimal",
+   "key": "In terms of π means leave π in: 25π."
+  },
+  {
+   "start": 89.5,
+   "end": 103,
+   "chapter": "Diameter Trap",
+   "title": "Diameter Trap: Halve It First",
+   "says": "The most common mistake: being given the diameter. A circle with diameter 10 centimetres. The formula needs the radius, so halve it first: r is 5. Same answer as before, 25π.",
+   "onScreen": "Circle diagram: diameter 10 cm | r = 10 ÷ 2 = 5 // halve the diameter first | A = π × 5² = 25π cm²",
+   "key": "Given the diameter? Halve it first."
+  },
+  {
+   "start": 103,
+   "end": 118.25,
+   "chapter": "Semicircles",
+   "title": "Semicircles: Half a Circle",
+   "says": "A semicircle is just half a circle, so find the full area and halve it. Diameter 10 centimetres: the full circle is 25π, so the semicircle is 12.5π, about 39.3 square centimetres.",
+   "onScreen": "Circle diagram: semicircle, diameter 10 cm | full circle = 25π | ÷ 2 = 12.5π | ≈ 39.3 cm²",
+   "key": "Semicircle = half the full circle."
+  },
+  {
+   "start": 118.25,
+   "end": 137.25,
+   "chapter": "Sectors",
+   "title": "Sectors: A Slice of Pie",
+   "says": "Higher papers love sectors, which are just one slice. A sector with radius 6 centimetres and an angle of 60 degrees. 60 out of 360 is one sixth of the circle. The full circle is 36π, so the sector is 6π, about 18.8 square centimetres.",
+   "onScreen": "Circle diagram: sector, radius 6 cm, angle 60° | full circle = π × 6² = 36π | 60/360 = 1/6 // what fraction of the circle? | 36π ÷ 6 = 6π ≈ 18.8 cm²",
+   "key": "Sector = angle/360 × πr²."
+  },
+  {
+   "start": 137.25,
+   "end": 153.5,
+   "chapter": "Backwards",
+   "title": "Backwards: Finding the Radius",
+   "says": "Sometimes you're given the area and asked for the radius. Area 50 square centimetres. So πr squared equals 50. Divide by π: r squared is about 15.9. Square root: r is about 3.99 centimetres.",
+   "onScreen": "Worked: πr² = 50 | r² = 50 ÷ π ≈ 15.92 // divide both sides by π | r = √15.92 ≈ 3.99 cm // then square root",
+   "key": "Working backwards: ÷ π, then square root."
+  },
+  {
+   "start": 153.5,
+   "end": 165.25,
+   "chapter": "Exam Tips",
+   "title": "Exam Tips: Common Mistakes",
+   "says": "The mistakes that lose marks: using the diameter instead of the radius, doing π times r and then squaring, which squares the π too, and forgetting that area is in square units.",
+   "onScreen": "Worked: ✗ π × 10² // used the diameter | ✗ (π × 5)² // squared the π as well | ✗ 78.5 cm // area needs cm² | ✓ halve · square r · × π · cm²"
+  },
+  {
+   "start": 165.25,
+   "end": 177.25,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Question",
+   "says": "Your turn. Find the area of a circle with diameter 12 centimetres. Give your answer in terms of π. Pause the video and try it.",
+   "onScreen": "Your turn: question card with a countdown. Q: Find the area of a circle with diameter 12 cm. Give your answer in terms of π.",
+   "question": "Find the area of a circle with diameter 12 cm. Give your answer in terms of π",
+   "pauseForStudent": true
+  },
+  {
+   "start": 177.25,
+   "end": 187.75,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Answer",
+   "says": "Halve the diameter: the radius is 6. 6 squared is 36, so the area is 36π square centimetres. If you got that, you've got it.",
+   "onScreen": "Your turn: the answer A: 36π cm².",
+   "question": "Find the area of a circle with diameter 12 cm. Give your answer in terms of π",
+   "answer": "36π cm²"
+  }
+ ],
+ "exportedAt": "2026-11-21"
+}
