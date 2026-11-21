@@ -1,0 +1,171 @@
+{
+ "id": "pythagoras-theorem",
+ "title": "Pythagoras' theorem",
+ "topic": "area-perimeter",
+ "youtubeId": "KoE_eJHwPF4",
+ "duration": 214,
+ "chapters": [
+  {
+   "name": "Intro",
+   "start": 0
+  },
+  {
+   "name": "The Picture",
+   "start": 13.5
+  },
+  {
+   "name": "The Method",
+   "start": 70.5
+  },
+  {
+   "name": "Shorter Side",
+   "start": 94
+  },
+  {
+   "name": "Decimals",
+   "start": 110
+  },
+  {
+   "name": "Real Life",
+   "start": 126.5
+  },
+  {
+   "name": "Coordinates",
+   "start": 146.25
+  },
+  {
+   "name": "Exam Tips",
+   "start": 160.25
+  },
+  {
+   "name": "Your Turn",
+   "start": 170.25
+  }
+ ],
+ "beats": [
+  {
+   "start": 0,
+   "end": 13.5,
+   "chapter": "Intro",
+   "title": "Intro: Why a² + b² = c²?",
+   "says": "Pythagoras' theorem is on almost every GCSE paper. Most people memorise a² plus b² equals c² without ever seeing why it's true. In the next few minutes, you'll see it, and you'll know exactly how to use it.",
+   "onScreen": "Squares on the sides: 3, 4, 5"
+  },
+  {
+   "start": 13.5,
+   "end": 24.25,
+   "chapter": "The Picture",
+   "title": "The Picture: The Parts",
+   "says": "It only works for right-angled triangles. The two shorter sides meet at the right angle. The longest side is opposite the right angle, and it has a special name: the hypotenuse.",
+   "onScreen": "Triangle diagram: labels, hypotenuse and right angle",
+   "key": "Hypotenuse = the longest side, opposite the right angle."
+  },
+  {
+   "start": 24.25,
+   "end": 43,
+   "chapter": "The Picture",
+   "title": "The Picture: Squares on the Sides",
+   "says": "Take a triangle with sides 3, 4 and 5, and build a square on each side. The square on the 3 has 9 little squares. The square on the 4 has 16. And the square on the hypotenuse has 25. Look: 9 plus 16 is exactly 25. And it always works.",
+   "onScreen": "Squares on the sides: 3, 4, 5",
+   "key": "a² + b² = c², where c is the hypotenuse."
+  },
+  {
+   "start": 43,
+   "end": 55.75,
+   "chapter": "The Picture",
+   "title": "The Picture: Why It Works",
+   "says": "Here's why. Put four copies of the triangle inside a big square, one in each corner. The gap left in the middle is a tilted square, and each of its sides is the hypotenuse, so its area is c squared.",
+   "onScreen": "Proof: four triangles in a big square, the gap is c²"
+  },
+  {
+   "start": 55.75,
+   "end": 70.5,
+   "chapter": "The Picture",
+   "title": "The Picture: Slide Them",
+   "says": "Now slide the triangles around inside the same big square. The gap becomes two squares: a squared and b squared. Same big square, same four triangles, so the gaps must be equal. a squared plus b squared equals c squared.",
+   "onScreen": "Proof: slide the triangles to leave a² and b²"
+  },
+  {
+   "start": 70.5,
+   "end": 84.25,
+   "chapter": "The Method",
+   "title": "The Method: Finding the Hypotenuse",
+   "says": "Let's use it. The shorter sides are 6 and 8 centimetres. Find the hypotenuse. Square them: 36 and 64. Add: 100. Then square root: the hypotenuse is 10 centimetres.",
+   "onScreen": "Triangle diagram: a = 6 cm, b = 8 cm, c = ? | 6² + 8² = c² | 36 + 64 = 100 // square and add | c = √100 = 10 cm // then square root",
+   "key": "Finding the longest side? Square, add, square root."
+  },
+  {
+   "start": 84.25,
+   "end": 94,
+   "chapter": "The Method",
+   "title": "The Method: Sense Check",
+   "says": "Quick check: the hypotenuse must be the longest side. 10 is longer than 6 and 8, so that's right. If your answer is shorter, something's gone wrong.",
+   "onScreen": "Worked: 10 > 8 and 10 > 6 ✓ // the hypotenuse is always the longest | shorter than a side? // you've made a mistake"
+  },
+  {
+   "start": 94,
+   "end": 110,
+   "chapter": "Shorter Side",
+   "title": "Shorter Side: Subtract",
+   "says": "If you know the hypotenuse and need a shorter side, you subtract instead. Hypotenuse 13, one side 5. Square them: 169 and 25. Subtract: 144. Square root: the missing side is 12.",
+   "onScreen": "Triangle diagram: a = ?, b = 5 cm, c = 13 cm | 13² − 5² = a² // the hypotenuse is 13 | 169 − 25 = 144 // square and subtract | a = √144 = 12 cm",
+   "key": "Finding a shorter side? Square, subtract, square root."
+  },
+  {
+   "start": 110,
+   "end": 126.5,
+   "chapter": "Decimals",
+   "title": "Decimals: Rounding",
+   "says": "Most answers aren't whole numbers. Sides 5 and 7: 25 plus 49 is 74. The square root of 74 is 8.602 and so on, so 8.60 to 2 decimal places. Only round at the very end.",
+   "onScreen": "Triangle diagram: a = 5 cm, b = 7 cm, c = ? | 5² + 7² = 74 | c = √74 = 8.6023… | c ≈ 8.60 cm // round at the end",
+   "key": "Round only at the very end."
+  },
+  {
+   "start": 126.5,
+   "end": 146.25,
+   "chapter": "Real Life",
+   "title": "Real Life: The Ladder",
+   "says": "Exam questions hide triangles in real life. A 5 metre ladder leans against a wall, with its foot 1.5 metres from the wall. How high up does it reach? The ladder is the hypotenuse. 25 minus 2.25 is 22.75, so it reaches about 4.77 metres.",
+   "onScreen": "Triangle diagram: ladder, a = ?, b = 1.5 m, c = 5 m | 5² − 1.5² = 22.75 // the ladder is the hypotenuse | a = √22.75 ≈ 4.77 m",
+   "key": "Find the right angle; the side opposite it is the hypotenuse."
+  },
+  {
+   "start": 146.25,
+   "end": 160.25,
+   "chapter": "Coordinates",
+   "title": "Coordinates: Distance",
+   "says": "It also finds the distance between two points. From 1, 2 to 7, 10: that's 6 across and 8 up. Those are the short sides, so the distance is the square root of 36 plus 64, which is 10.",
+   "onScreen": "Triangle diagram: points (1, 2) and (7, 10) | 6² + 8² = 100 // across 6, up 8 | distance = √100 = 10",
+   "key": "Distance between points: across and up are the short sides."
+  },
+  {
+   "start": 160.25,
+   "end": 170.25,
+   "chapter": "Exam Tips",
+   "title": "Exam Tips: Common Mistakes",
+   "says": "The mistakes that lose marks: adding when you should subtract, because you didn't spot the hypotenuse; forgetting the square root at the end; and rounding too early.",
+   "onScreen": "Worked: ✗ 13² + 5² // it's a shorter side: subtract | ✗ c = 100 // forgot to square root | ✗ √74 ≈ 8.6, then reused // round at the end | ✓ spot c · square · add or subtract · √"
+  },
+  {
+   "start": 170.25,
+   "end": 183.5,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Question",
+   "says": "Your turn. A right-angled triangle has shorter sides of 9 centimetres and 12 centimetres. Find the length of the hypotenuse. Pause the video and try it.",
+   "onScreen": "Your turn: question card with a countdown. Q: The shorter sides of a right-angled triangle are 9 cm and 12 cm. Find the hypotenuse.",
+   "question": "The shorter sides of a right-angled triangle are 9 cm and 12 cm. Find the hypotenuse",
+   "pauseForStudent": true
+  },
+  {
+   "start": 183.5,
+   "end": 198.25,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Answer",
+   "says": "9 squared is 81, and 12 squared is 144. Add them: 225. The square root of 225 is 15, so the hypotenuse is 15 centimetres. If you got that, you've got it.",
+   "onScreen": "Your turn: the answer A: c = 15 cm.",
+   "question": "The shorter sides of a right-angled triangle are 9 cm and 12 cm. Find the hypotenuse",
+   "answer": "c = 15 cm"
+  }
+ ],
+ "exportedAt": "2026-11-21"
+}
