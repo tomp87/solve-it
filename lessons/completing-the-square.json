@@ -1,0 +1,185 @@
+{
+ "id": "completing-the-square",
+ "title": "Completing the square",
+ "topic": "quadratic-solving",
+ "youtubeId": "Tp4IP0QygjQ",
+ "duration": 243.5,
+ "chapters": [
+  {
+   "name": "Intro",
+   "start": 0
+  },
+  {
+   "name": "The Picture",
+   "start": 11.75
+  },
+  {
+   "name": "The Method",
+   "start": 44.25
+  },
+  {
+   "name": "With a Number",
+   "start": 70.75
+  },
+  {
+   "name": "Negatives",
+   "start": 89
+  },
+  {
+   "name": "Odd Numbers",
+   "start": 107.25
+  },
+  {
+   "name": "A Number in Front",
+   "start": 126.75
+  },
+  {
+   "name": "Solving",
+   "start": 151.25
+  },
+  {
+   "name": "Turning Points",
+   "start": 176.75
+  },
+  {
+   "name": "Exam Tips",
+   "start": 197
+  },
+  {
+   "name": "Your Turn",
+   "start": 209.5
+  }
+ ],
+ "beats": [
+  {
+   "start": 0,
+   "end": 11.75,
+   "chapter": "Intro",
+   "title": "Intro: The Big Idea",
+   "says": "Completing the square looks like a random trick you're told to memorise. It isn't. By the end of this video you'll see exactly why it works, and you'll be able to do any GCSE question on it.",
+   "onScreen": "Algebra tiles: a square with a missing corner."
+  },
+  {
+   "start": 11.75,
+   "end": 24,
+   "chapter": "The Picture",
+   "title": "The Picture: Two Pieces",
+   "says": "Let's start with x² + 6x. The x² is a square, x by x. The 6x is a rectangle, x by 6. Put them side by side and they don't make a square. Yet.",
+   "onScreen": "Algebra tiles: x squared tile and a 6x strip."
+  },
+  {
+   "start": 24,
+   "end": 32.5,
+   "chapter": "The Picture",
+   "title": "The Picture: Cut and Move",
+   "says": "So cut the 6x in half, into two strips of x by 3. Stick one strip down the side of the square, and the other along the bottom.",
+   "onScreen": "Algebra tiles: the 6x strip splits and wraps around the square."
+  },
+  {
+   "start": 32.5,
+   "end": 44.25,
+   "chapter": "The Picture",
+   "title": "The Picture: The Missing Corner",
+   "says": "Now it's almost a bigger square, with x plus 3 on each side. Except one corner is missing. That corner is 3 by 3, which is 9. So our shape is the big square, minus 9.",
+   "onScreen": "Algebra tiles: the missing 3 by 3 corner glows."
+  },
+  {
+   "start": 44.25,
+   "end": 59.5,
+   "chapter": "The Method",
+   "title": "The Method: Halve, Square, Subtract",
+   "says": "That gives us the rule. x² + 6x equals the big square, x plus 3 all squared, minus the missing corner: (x + 3)² − 9. Halve the number in front of x, square it, take it away. That's the whole method.",
+   "onScreen": "Equation steps: x² + 6x = (x + 3)² − 9, with half and square highlighted.",
+   "key": "Halve the number in front of x, square it, take it away."
+  },
+  {
+   "start": 59.5,
+   "end": 70.75,
+   "chapter": "The Method",
+   "title": "The Method: Check It",
+   "says": "Always check by expanding. (x + 3)² is x² + 6x + 9. Take away 9, and you're back to x² + 6x. It works.",
+   "onScreen": "Worked: (x + 3)² − 9 | = x² + 6x + 9 − 9 // expand the bracket | = x² + 6x ✓",
+   "key": "Check by expanding the bracket."
+  },
+  {
+   "start": 70.75,
+   "end": 89,
+   "chapter": "With a Number",
+   "title": "With a Number: Example",
+   "says": "Most exam questions have a number on the end, like x² + 8x + 5. Just ignore the 5 for a moment. Half of 8 is 4, so x² + 8x is (x + 4)² − 16. Then bring the 5 back: minus 16 plus 5 is minus 11.",
+   "onScreen": "Worked example: x² + 8x + 5 | = (x + 4)² − 16 + 5 // halve 8 → 4, square it → 16 | = (x + 4)² − 11",
+   "key": "Ignore the number on the end, then add it back."
+  },
+  {
+   "start": 89,
+   "end": 107.25,
+   "chapter": "Negatives",
+   "title": "Negatives: Minus Signs",
+   "says": "What if it's a minus, like x² − 6x + 2? Exactly the same, but the bracket gets a minus. Half of minus 6 is minus 3, and minus 3 squared is still 9. So it's (x − 3)² − 9 + 2, which is (x − 3)² − 7.",
+   "onScreen": "Worked example: x² − 6x + 2 | = (x − 3)² − 9 + 2 // half of −6 is −3, and (−3)² = 9 | = (x − 3)² − 7",
+   "key": "A minus goes inside the bracket: half of −6 is −3."
+  },
+  {
+   "start": 107.25,
+   "end": 126.75,
+   "chapter": "Odd Numbers",
+   "title": "Odd Numbers: Fractions",
+   "says": "Odd numbers just mean fractions. x² + 5x + 1: half of 5 is five halves, and five halves squared is twenty-five quarters. So it's (x + 5/2)² − 25/4 + 1, which simplifies to (x + 5/2)² − 21/4.",
+   "onScreen": "Worked example: x² + 5x + 1 | = (x + 5/2)² − 25/4 + 1 // half of 5 = 5/2, (5/2)² = 25/4 | = (x + 5/2)² − 21/4",
+   "key": "Odd numbers give fractions: half of 5 is 5/2."
+  },
+  {
+   "start": 126.75,
+   "end": 151.25,
+   "chapter": "A Number in Front",
+   "title": "A Number in Front: Factorise First",
+   "says": "Higher papers love this one: 2x² + 12x + 7. The 2 gets in the way, so take it out of the first two terms: 2 brackets x² + 6x, plus 7. We already know x² + 6x is (x + 3)² − 9. Multiply the 2 back in: 2(x + 3)² − 18 + 7, which is 2(x + 3)² − 11.",
+   "onScreen": "Worked example: 2x² + 12x + 7 | = 2(x² + 6x) + 7 // take the 2 out first | = 2[(x + 3)² − 9] + 7 | = 2(x + 3)² − 18 + 7 | = 2(x + 3)² − 11",
+   "key": "Number in front of x²? Take it out first."
+  },
+  {
+   "start": 151.25,
+   "end": 176.75,
+   "chapter": "Solving",
+   "title": "Solving: Solving Equations",
+   "says": "Completing the square also solves equations. x² + 6x − 7 = 0. Complete the square: (x + 3)² − 16 = 0. Add 16: (x + 3)² = 16. Square root both sides, and don't forget plus or minus: x + 3 = 4 or −4. So x = 1 or x = −7.",
+   "onScreen": "Worked example: x² + 6x − 7 = 0 | (x + 3)² − 9 − 7 = 0 | (x + 3)² = 16 // add 16 to both sides | x + 3 = ±4 // square root: plus or minus! | x = 1 or x = −7",
+   "key": "Square rooting? Don't forget ±."
+  },
+  {
+   "start": 176.75,
+   "end": 197,
+   "chapter": "Turning Points",
+   "title": "Turning Points: Reading the Graph",
+   "says": "And here's the best part. The completed square tells you the graph's turning point for free. y = (x + 3)² − 16 has its turning point at minus 3, minus 16: flip the sign inside the bracket, keep the number outside. And the graph crosses the x-axis at the roots we just found, 1 and −7.",
+   "onScreen": "Graph: y = x² + 6x − 7, turning point and roots",
+   "key": "Turning point: flip the sign inside, keep the number outside."
+  },
+  {
+   "start": 197,
+   "end": 209.5,
+   "chapter": "Exam Tips",
+   "title": "Exam Tips: Common Mistakes",
+   "says": "The three mistakes that lose marks: forgetting to halve the number, forgetting the plus or minus when you square root, and getting the turning point sign wrong. It's minus 3, not plus 3.",
+   "onScreen": "Worked: ✗ (x + 6)² − 36 // forgot to halve | ✗ x + 3 = 4 only // forgot ± | ✗ turning point (3, −16) // wrong sign | ✓ halve · ± · flip the sign"
+  },
+  {
+   "start": 209.5,
+   "end": 220.25,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Question",
+   "says": "Your turn. Write x² − 10x + 3 in completed square form. Pause the video and try it.",
+   "onScreen": "Your turn: question card with a countdown.",
+   "pauseForStudent": true
+  },
+  {
+   "start": 220.25,
+   "end": 243.5,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Answer",
+   "says": "Half of minus 10 is minus 5, and minus 5 squared is 25. So it's (x − 5)² − 25 + 3, which is (x − 5)² − 22. If you got that, you've got it. Want endless questions like this, with a tutor when you're stuck? Try a free question at solveitmaths.co.uk.",
+   "onScreen": "Your turn: the answer x² − 10x + 3, then the Solve It end card."
+  }
+ ],
+ "exportedAt": "2026-11-21"
+}
