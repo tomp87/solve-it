@@ -1,0 +1,155 @@
+{
+ "id": "percentages-and-multipliers",
+ "title": "Percentages and Multipliers",
+ "topic": "percentages",
+ "youtubeId": "VJmJZKEV9Wg",
+ "duration": 206.93,
+ "chapters": [
+  {
+   "name": "Intro",
+   "start": 0
+  },
+  {
+   "name": "The Picture",
+   "start": 16.25
+  },
+  {
+   "name": "The Method",
+   "start": 43.94
+  },
+  {
+   "name": "The Jacket Explained",
+   "start": 77.6
+  },
+  {
+   "name": "Reverse Percentages",
+   "start": 94.37
+  },
+  {
+   "name": "Compound Interest",
+   "start": 117.17
+  },
+  {
+   "name": "Percentage Change",
+   "start": 137.35
+  },
+  {
+   "name": "Exam Tips",
+   "start": 151.58
+  },
+  {
+   "name": "Your Turn",
+   "start": 165.37
+  }
+ ],
+ "beats": [
+  {
+   "start": 0,
+   "end": 16.25,
+   "chapter": "Intro",
+   "title": "Intro: The Jacket Trick",
+   "says": "A jacket costs £80. The price goes up 20%, then down 20%. So it's back to £80, right? Not quite: it's £76.80. By the end of this video you'll know exactly why, and you'll never get a percentage question wrong again.",
+   "onScreen": "Percent bar: 100% = £80 | +20% | −20%"
+  },
+  {
+   "start": 16.25,
+   "end": 28.54,
+   "chapter": "The Picture",
+   "title": "The Picture: Percent Means Per Hundred",
+   "says": "Percent means per hundred. Picture the whole price as one bar: that's 100%. Split it into ten equal blocks, and each block is 10%. 10% of £80 is £8.",
+   "onScreen": "Percent bar: 100% = £80 | split 10",
+   "key": "The whole amount is 100%. 10% is a tenth of it."
+  },
+  {
+   "start": 28.54,
+   "end": 43.94,
+   "chapter": "The Picture",
+   "title": "The Picture: Going Up",
+   "says": "Now increase it by 20%: add two more blocks. The new price is 100% plus 20%, which is 120% of the original. As a decimal, that's 1.2. So £80 times 1.2 is £96.",
+   "onScreen": "Percent bar: 100% = £80 | +20%",
+   "key": "Increase by 20%? Multiply by 1.2."
+  },
+  {
+   "start": 43.94,
+   "end": 58.41,
+   "chapter": "The Method",
+   "title": "The Method: Going Down",
+   "says": "Decreases work the same way. Take 15% off, and what's left is 85%. That's 0.85. So £80 times 0.85 is £68. One multiplication, no adding or taking away.",
+   "onScreen": "Percent bar: 100% = £80 | −15%",
+   "key": "Decrease by 15%? Multiply by 0.85."
+  },
+  {
+   "start": 58.41,
+   "end": 77.6,
+   "chapter": "The Method",
+   "title": "The Method: Finding the Multiplier",
+   "says": "So every percentage change has a multiplier. Up 20% is times 1.2. Up 5% is times 1.05. Down 15% is times 0.85. Down 3% is times 0.97. Start from 100, add or take away, then divide by 100.",
+   "onScreen": "Worked: +20% → × 1.2 | +5% → × 1.05 | −15% → × 0.85 | −3% → × 0.97 // 100 ± the change, ÷ 100",
+   "key": "Multiplier = (100 ± the change) ÷ 100."
+  },
+  {
+   "start": 77.6,
+   "end": 94.37,
+   "chapter": "The Jacket Explained",
+   "title": "The Jacket Explained",
+   "says": "Back to the jacket. Up 20%: £80 times 1.2 is £96. Then down 20%: £96 times 0.8 is £76.80. The 20% off was taken from the bigger price, so it's not back to £80.",
+   "onScreen": "Percent bar: 100% = £80 | +20% | −20%"
+  },
+  {
+   "start": 94.37,
+   "end": 117.17,
+   "chapter": "Reverse Percentages",
+   "title": "Reverse Percentages",
+   "says": "Now the exam favourite. After a 20% rise, a jacket costs £96. What was it before? The trap is taking 20% off £96. But the 20% was of the original price, not this one. £96 is 120% of the original, so undo the multiplier: divide by 1.2. The original price was £80.",
+   "onScreen": "Percent bar: 120% = £96 | reverse",
+   "key": "Reverse percentage? Divide by the multiplier."
+  },
+  {
+   "start": 117.17,
+   "end": 137.35,
+   "chapter": "Compound Interest",
+   "title": "Compound Interest",
+   "says": "Compound interest just repeats the multiplier. £1000 in a bank at 5% a year. After one year, £1050. After two, £1102.50. After three years, £1157.63. That's £1000 times 1.05 to the power of 3.",
+   "onScreen": "Percent bar: £1000 | +5% for 3 years",
+   "key": "Compound interest: multiply by the multiplier once per year."
+  },
+  {
+   "start": 137.35,
+   "end": 151.58,
+   "chapter": "Percentage Change",
+   "title": "Percentage Change",
+   "says": "To find a percentage change, divide the change by the original, then times by 100. From £80 to £96 is a change of £16. 16 divided by 80 is 0.2, which is 20%.",
+   "onScreen": "Worked: change = 96 − 80 = 16 // new − original | 16 ÷ 80 = 0.2 // divide by the ORIGINAL | 0.2 × 100 = 20%",
+   "key": "Percentage change = change ÷ original × 100."
+  },
+  {
+   "start": 151.58,
+   "end": 165.37,
+   "chapter": "Exam Tips",
+   "title": "Exam Tips: Common Mistakes",
+   "says": "The mistakes that lose marks: taking the percentage of the new amount in reverse questions, using 1.15 for a 15% decrease, dividing by the new amount for percentage change, and adding the interest only once.",
+   "onScreen": "Worked: ✗ £96 − 20% // reverse: ÷ 1.2 | ✗ −15% → × 1.15 // it's × 0.85 | ✗ 16 ÷ 96 // divide by the original | ✓ find the multiplier · × or ÷"
+  },
+  {
+   "start": 165.37,
+   "end": 178.17,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Question",
+   "says": "Your turn. In a sale, a phone costs £240 after a 20% discount. What was the original price? Pause the video and try it.",
+   "onScreen": "Your turn: question card with a countdown. Q: After a 20% discount, a phone costs £240. What was the original price?",
+   "question": "After a 20% discount, a phone costs £240. What was the original price?",
+   "pauseForStudent": true
+  },
+  {
+   "start": 178.17,
+   "end": 192.03,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Answer",
+   "says": "A 20% discount leaves 80%, so the multiplier is 0.8. It's a reverse percentage, so divide: £240 divided by 0.8 is £300. If you got that, you've got it.",
+   "onScreen": "Your turn: the answer A: £300.",
+   "question": "After a 20% discount, a phone costs £240. What was the original price?",
+   "answer": "£300"
+  }
+ ],
+ "exportedAt": "2026-11-22"
+}
