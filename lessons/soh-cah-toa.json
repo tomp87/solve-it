@@ -1,0 +1,159 @@
+{
+ "id": "soh-cah-toa",
+ "title": "Soh Cah Toa",
+ "topic": "pythagoras",
+ "youtubeId": "T3DnQh8IaSA",
+ "duration": 189.11,
+ "chapters": [
+  {
+   "name": "Intro",
+   "start": 0
+  },
+  {
+   "name": "The Picture",
+   "start": 11.72
+  },
+  {
+   "name": "The Method",
+   "start": 53.31
+  },
+  {
+   "name": "Finding a Side",
+   "start": 84.55
+  },
+  {
+   "name": "Finding an Angle",
+   "start": 119.73
+  },
+  {
+   "name": "Calculator",
+   "start": 129.9
+  },
+  {
+   "name": "Exam Tips",
+   "start": 139.56
+  },
+  {
+   "name": "Your Turn",
+   "start": 149.55
+  }
+ ],
+ "beats": [
+  {
+   "start": 0,
+   "end": 11.72,
+   "chapter": "Intro",
+   "title": "Intro: One Side and an Angle",
+   "says": "Pythagoras needs two sides of a right-angled triangle. But what if you only know one side and an angle? That's what trigonometry is for, and by the end of this video, SOH CAH TOA will actually make sense.",
+   "onScreen": "Triangle diagram: angle 35°, hyp = 10 cm, opp = ?"
+  },
+  {
+   "start": 11.72,
+   "end": 24.21,
+   "chapter": "The Picture",
+   "title": "The Picture: Naming the Sides",
+   "says": "First, name the sides, starting from the angle you're using. The longest side, opposite the right angle, is still the hypotenuse. The side across from your angle is the opposite. And the side next to your angle is the adjacent.",
+   "onScreen": "Triangle diagram: angle θ, labels opposite, adjacent, hypotenuse",
+   "key": "Label from the angle: opposite is across from it, adjacent is next to it."
+  },
+  {
+   "start": 24.21,
+   "end": 41.4,
+   "chapter": "The Picture",
+   "title": "The Picture: Same Angle, Same Shape",
+   "says": "Here's the big idea. Draw right-angled triangles with a 30 degree angle: small, medium, huge. The opposite side is always exactly half the hypotenuse. 1 out of 2, 2 out of 4, 4 out of 8. Same angle, same shape, so the ratio never changes.",
+   "onScreen": "Similar triangles: angle 30°, hypotenuse 2, 4, 8"
+  },
+  {
+   "start": 41.4,
+   "end": 53.31,
+   "chapter": "The Picture",
+   "title": "The Picture: That's All Sine Is",
+   "says": "That fixed ratio has a name. Opposite divided by hypotenuse is called the sine of the angle. So sine of 30 degrees is 0.5. Your calculator just remembers these ratios for every angle.",
+   "onScreen": "Worked: opp ÷ hyp = 0.5 // for every 30° triangle | sin 30° = 0.5 // that's all sine means | try it: sin 30 on your calculator",
+   "key": "sin θ = opposite ÷ hypotenuse."
+  },
+  {
+   "start": 53.31,
+   "end": 68.78,
+   "chapter": "The Method",
+   "title": "The Method: SOH CAH TOA",
+   "says": "There are three of these ratios, and the way to remember them is soh-cah-toa. People say it like one word, soh-cah-toa, and that's what makes it stick. Sine is opposite over hypotenuse. Cos is adjacent over hypotenuse. And tan is opposite over adjacent.",
+   "onScreen": "SOHCAHTOA: the three ratios",
+   "key": "SOH CAH TOA: sin = O/H, cos = A/H, tan = O/A."
+  },
+  {
+   "start": 68.78,
+   "end": 84.55,
+   "chapter": "The Method",
+   "title": "The Method: Picking the Right One",
+   "says": "To pick the right one, ask two questions: which side do I know, and which side do I want? Here we know the hypotenuse and want the opposite. Cross out the adjacent: we don't need it. Opposite and hypotenuse: that's SOH, so we use sine.",
+   "onScreen": "SOHCAHTOA pick: know hyp, want opp",
+   "key": "Know one side, want another? The two sides tell you which ratio."
+  },
+  {
+   "start": 84.55,
+   "end": 102.67,
+   "chapter": "Finding a Side",
+   "title": "Finding a Side: Multiply",
+   "says": "Let's finish it. The hypotenuse is 10, the angle is 35 degrees. Sine 35 equals opposite over 10. Times both sides by 10: the opposite is 10 times sine 35, which is 5.74 centimetres.",
+   "onScreen": "Triangle diagram: angle 35°, hyp = 10 cm, opp = ? | sin 35° = opp ÷ 10 // SOH | opp = 10 × sin 35° // times both sides by 10 | opp = 5.74 cm",
+   "key": "Unknown on top? Multiply."
+  },
+  {
+   "start": 102.67,
+   "end": 119.73,
+   "chapter": "Finding a Side",
+   "title": "Finding a Side: Divide",
+   "says": "Sometimes the unknown ends up on the bottom. The adjacent is 8, the angle is 40 degrees, and we want the hypotenuse. That's CAH: cos 40 equals 8 over the hypotenuse. So divide: the hypotenuse is 8 divided by cos 40, which is 10.44 centimetres.",
+   "onScreen": "Triangle diagram: angle 40°, adj = 8 cm, hyp = ? | cos 40° = 8 ÷ hyp // CAH | hyp = 8 ÷ cos 40° // unknown on the bottom: divide | hyp = 10.44 cm",
+   "key": "Unknown on the bottom? Divide."
+  },
+  {
+   "start": 119.73,
+   "end": 129.9,
+   "chapter": "Finding an Angle",
+   "title": "Finding an Angle: Inverse",
+   "says": "To find an angle, use the inverse. The opposite is 5 and the adjacent is 7. That's TOA: tan of the angle is 5 over 7. Press shift, then tan, to undo it: the inverse tan of 5 over 7 is 35.5 degrees.",
+   "onScreen": "Triangle diagram: angle ?, opp = 5 cm, adj = 7 cm | tan θ = 5 ÷ 7 // TOA | θ = tan⁻¹(5 ÷ 7) // shift, then tan | θ = 35.5°",
+   "key": "Finding an angle? Use the inverse: sin⁻¹, cos⁻¹ or tan⁻¹."
+  },
+  {
+   "start": 129.9,
+   "end": 139.56,
+   "chapter": "Calculator",
+   "title": "Calculator: Degrees Mode",
+   "says": "One calculator check before the exam: make sure it's in degrees. Look for a small D at the top of the screen. If it says R or G, your answers will all be wrong.",
+   "onScreen": "Worked: D on screen ✓ // degrees: correct | R or G on screen ✗ // radians or grads: wrong answers | sin 30 = 0.5 ✓ // quick test"
+  },
+  {
+   "start": 139.56,
+   "end": 149.55,
+   "chapter": "Exam Tips",
+   "title": "Exam Tips: Common Mistakes",
+   "says": "The mistakes that lose marks: labelling the sides from the wrong angle, multiplying when the unknown is on the bottom, forgetting to use the inverse for angles, and rounding too early.",
+   "onScreen": "Worked: ✗ labels from the wrong angle // start from your angle | ✗ 8 × cos 40° // unknown on the bottom: divide | ✗ θ = tan(5 ÷ 7) // angles need tan⁻¹ | ✓ label · pick · rearrange · calculate"
+  },
+  {
+   "start": 149.55,
+   "end": 161.46,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Question",
+   "says": "Your turn. The hypotenuse is 12 centimetres and the angle is 30 degrees. Find the opposite side. Pause the video and try it.",
+   "onScreen": "Your turn: question card with a countdown. Q: Hypotenuse 12 cm, angle 30°. Find the opposite side.",
+   "question": "Hypotenuse 12 cm, angle 30°. Find the opposite side",
+   "pauseForStudent": true
+  },
+  {
+   "start": 161.46,
+   "end": 174.6,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Answer",
+   "says": "We know the hypotenuse and want the opposite, so it's SOH. The opposite is 12 times sine 30. Sine 30 is 0.5, so the answer is 6 centimetres. If you got that, you've got it.",
+   "onScreen": "Your turn: the answer A: opp = 6 cm.",
+   "question": "Hypotenuse 12 cm, angle 30°. Find the opposite side",
+   "answer": "opp = 6 cm"
+  }
+ ],
+ "exportedAt": "2026-11-22"
+}
