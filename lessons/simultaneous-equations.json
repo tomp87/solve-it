@@ -1,0 +1,142 @@
+{
+ "id": "simultaneous-equations",
+ "title": "Simultaneous Equations",
+ "topic": "trigonometry",
+ "youtubeId": "lcrD8nQSQgA",
+ "duration": 164.12,
+ "chapters": [
+  {
+   "name": "Intro",
+   "start": 0
+  },
+  {
+   "name": "The Picture",
+   "start": 17.89
+  },
+  {
+   "name": "The Method",
+   "start": 45.17
+  },
+  {
+   "name": "Making Them Match",
+   "start": 67.97
+  },
+  {
+   "name": "Different Signs",
+   "start": 85.79
+  },
+  {
+   "name": "Substitution",
+   "start": 100.08
+  },
+  {
+   "name": "Exam Tips",
+   "start": 120.61
+  },
+  {
+   "name": "Your Turn",
+   "start": 128.4
+  }
+ ],
+ "beats": [
+  {
+   "start": 0,
+   "end": 17.89,
+   "chapter": "Intro",
+   "title": "Intro: The Burger Problem",
+   "says": "Two burgers and a fries cost £11. One burger and a fries cost £7. How much is a burger? Look at the difference between the two orders: it's just one burger, and the price goes up by £4. So a burger costs £4. That's simultaneous equations, and you just solved one.",
+   "onScreen": "Receipts: 🍔🍔🍟 = £11 | 🍔🍟 = £7"
+  },
+  {
+   "start": 17.89,
+   "end": 31.19,
+   "chapter": "The Picture",
+   "title": "The Picture: Lots of Answers",
+   "says": "Now with letters: x for a burger, y for the fries. On its own, x plus y equals 7 has loads of answers: 1 and 6, 2 and 5, 3 and 4, and more. Plot them all, and they make a straight line.",
+   "onScreen": "Lines graph: x + y = 7"
+  },
+  {
+   "start": 31.19,
+   "end": 45.17,
+   "chapter": "The Picture",
+   "title": "The Picture: Where They Cross",
+   "says": "Now plot the other equation, 2x plus y equals 11. It's a different line. There's only one point that sits on both lines: where they cross, at 4 and 3. That's the answer: a burger is £4 and the fries are £3.",
+   "onScreen": "Lines graph: x + y = 7 | 2x + y = 11",
+   "key": "The answer is where the two lines cross: it works in both equations."
+  },
+  {
+   "start": 45.17,
+   "end": 56.6,
+   "chapter": "The Method",
+   "title": "The Method: Elimination",
+   "says": "In the exam you don't draw graphs. You use elimination. Line the equations up. Both have exactly one y, so subtract the bottom from the top. The y's cancel, leaving x equals 4.",
+   "onScreen": "Elimination: 2x + y = 11 | x + y = 7 | subtract",
+   "key": "Same letter, same amount, same sign? Subtract to cancel it."
+  },
+  {
+   "start": 56.6,
+   "end": 67.97,
+   "chapter": "The Method",
+   "title": "The Method: Substitute Back",
+   "says": "Now put x equals 4 back into either equation. 4 plus y equals 7, so y is 3. Then check it in the other one: 2 times 4, plus 3, is 11. It works.",
+   "onScreen": "Worked: 4 + y = 7 // put x = 4 back in | y = 3 | check: 2 × 4 + 3 = 11 ✓ // always check in the other one",
+   "key": "Substitute back to find the other letter, then check."
+  },
+  {
+   "start": 67.97,
+   "end": 85.79,
+   "chapter": "Making Them Match",
+   "title": "Making Them Match: Multiply First",
+   "says": "Usually nothing matches straight away. 3x plus 2y equals 16, and x plus y equals 6. Multiply the bottom equation by 2, so both have 2y. Now subtract. The y's cancel, leaving x equals 4. Then 4 plus y equals 6, so y is 2.",
+   "onScreen": "Elimination: 3x + 2y = 16 | x + y = 6 | ×2 second | subtract",
+   "key": "Nothing matches? Multiply one equation so a letter does."
+  },
+  {
+   "start": 85.79,
+   "end": 100.08,
+   "chapter": "Different Signs",
+   "title": "Different Signs: Add",
+   "says": "If the signs are different, add instead. 2x plus y equals 9, and 3x minus y equals 11. Add them: plus y and minus y cancel, leaving 5x equals 20. So x is 4, and y is 1.",
+   "onScreen": "Elimination: 2x + y = 9 | 3x − y = 11 | add",
+   "key": "Same signs subtract, different signs add."
+  },
+  {
+   "start": 100.08,
+   "end": 120.61,
+   "chapter": "Substitution",
+   "title": "Substitution: When y = …",
+   "says": "If one equation already says y equals something, swap it straight in. y equals 2x plus 1, and 3x plus y equals 16. Replace y with 2x plus 1. That gives 5x plus 1 equals 16, so x is 3. Then y is 2 times 3, plus 1, which is 7.",
+   "onScreen": "Worked: 3x + (2x + 1) = 16 // swap y for 2x + 1 | 5x + 1 = 16 | x = 3 | y = 2 × 3 + 1 = 7",
+   "key": "One equation says y = …? Substitute it in."
+  },
+  {
+   "start": 120.61,
+   "end": 128.4,
+   "chapter": "Exam Tips",
+   "title": "Exam Tips: Common Mistakes",
+   "says": "The mistakes that lose marks: subtracting when the signs are different, slipping up with negatives, stopping after the first letter, and not checking your answer in both equations.",
+   "onScreen": "Worked: ✗ subtracting +y and −y // different signs: add | ✗ 11 − (−3) = 8 // minus a negative is plus: 14 | ✗ x = 4, then stop // find y too | ✓ match · cancel · solve · substitute · check"
+  },
+  {
+   "start": 128.4,
+   "end": 138.5,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Question",
+   "says": "Your turn. Solve x plus y equals 10, and x minus y equals 4. Pause the video and try it.",
+   "onScreen": "Your turn: question card with a countdown. Q: Solve x + y = 10 and x − y = 4.",
+   "question": "Solve x + y = 10 and x − y = 4",
+   "pauseForStudent": true
+  },
+  {
+   "start": 138.5,
+   "end": 149.39,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Answer",
+   "says": "The signs on the y's are different, so add: 2x equals 14, so x is 7. Then 7 plus y equals 10, so y is 3. If you got that, you've got it.",
+   "onScreen": "Your turn: the answer A: x = 7, y = 3.",
+   "question": "Solve x + y = 10 and x − y = 4",
+   "answer": "x = 7, y = 3"
+  }
+ ],
+ "exportedAt": "2026-11-22"
+}
