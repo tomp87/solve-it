@@ -1,0 +1,149 @@
+{
+ "id": "factorising-quadratics",
+ "title": "Factorising Quadratics",
+ "topic": "quadratic-factorising",
+ "youtubeId": "Bd3k_yqyRKo",
+ "duration": 175.25,
+ "chapters": [
+  {
+   "name": "Intro",
+   "start": 0
+  },
+  {
+   "name": "The Picture",
+   "start": 13.26
+  },
+  {
+   "name": "The Method",
+   "start": 33.72
+  },
+  {
+   "name": "Factorising",
+   "start": 52.97
+  },
+  {
+   "name": "Finding the Two Numbers",
+   "start": 69.99
+  },
+  {
+   "name": "Negative Numbers",
+   "start": 80.85
+  },
+  {
+   "name": "Always Check",
+   "start": 101.56
+  },
+  {
+   "name": "Solving",
+   "start": 114.42
+  },
+  {
+   "name": "Exam Tips",
+   "start": 130.65
+  },
+  {
+   "name": "Your Turn",
+   "start": 142
+  }
+ ],
+ "beats": [
+  {
+   "start": 0,
+   "end": 13.26,
+   "chapter": "Intro",
+   "title": "Intro: Brackets Are a Rectangle",
+   "says": "Why does x plus 3, times x plus 2, give x squared plus 5x plus 6? Most people just learn the rule. But draw it as a rectangle, and it's obvious. Then factorising is the same picture, backwards.",
+   "onScreen": "Area rectangle: (x + 3)(x + 2)"
+  },
+  {
+   "start": 13.26,
+   "end": 33.72,
+   "chapter": "The Picture",
+   "title": "The Picture: Area of a Rectangle",
+   "says": "A rectangle's area is width times height. Make the width x plus 3, and the height x plus 2. Now split it into four parts. x times x is x squared. x times 3 is 3x. 2 times x is 2x. And 2 times 3 is 6. Add them together: x squared plus 5x plus 6.",
+   "onScreen": "Area rectangle: (x + 3)(x + 2)",
+   "key": "Expanding = finding the area: multiply every part by every part."
+  },
+  {
+   "start": 33.72,
+   "end": 52.97,
+   "chapter": "The Method",
+   "title": "The Method: With a Negative",
+   "says": "Negatives work the same way, you just keep the signs. x plus 4, times x minus 1. x times x is x squared. 4 times x is 4x. Minus 1 times x is minus x. And 4 times minus 1 is minus 4. Collect the x terms: x squared plus 3x minus 4.",
+   "onScreen": "Area rectangle: (x + 4)(x − 1)",
+   "key": "Keep the signs: + × − gives −."
+  },
+  {
+   "start": 52.97,
+   "end": 69.99,
+   "chapter": "Factorising",
+   "title": "Factorising: The Rectangle Backwards",
+   "says": "Factorising goes backwards. Start with x squared plus 5x plus 6. Put the x squared in one corner and the 6 in the other. The two side numbers have to multiply to 6, and add to 5 for the middle. That's 2 and 3, so the brackets are x plus 2, times x plus 3.",
+   "onScreen": "Area rectangle: factorise x² + 5x + 6",
+   "key": "Factorising: find two numbers that multiply to the last number and add to the middle one."
+  },
+  {
+   "start": 69.99,
+   "end": 80.85,
+   "chapter": "Finding the Two Numbers",
+   "title": "Finding the Two Numbers",
+   "says": "To find them, list the pairs that multiply to 6. 1 and 6 add to 7: no. 2 and 3 add to 5: that works. So it's x plus 2, times x plus 3.",
+   "onScreen": "Factor pairs: 6, sum 5"
+  },
+  {
+   "start": 80.85,
+   "end": 101.56,
+   "chapter": "Negative Numbers",
+   "title": "Negative Numbers",
+   "says": "Now x squared plus 2x minus 15. The numbers multiply to minus 15, so one must be negative. 1 and minus 15 add to minus 14. Minus 1 and 15 add to 14. 3 and minus 5 add to minus 2. Minus 3 and 5 add to 2: that works. So it's x minus 3, times x plus 5.",
+   "onScreen": "Factor pairs: −15, sum 2",
+   "key": "Last number negative? One number is negative, one positive."
+  },
+  {
+   "start": 101.56,
+   "end": 114.42,
+   "chapter": "Always Check",
+   "title": "Always Check",
+   "says": "Always check by expanding back out. x minus 3, times x plus 5: x squared, plus 5x, minus 3x, minus 15. That's x squared plus 2x minus 15. It matches.",
+   "onScreen": "Worked: (x − 3)(x + 5) // expand to check | x² + 5x − 3x − 15 | x² + 2x − 15 ✓ // matches the question"
+  },
+  {
+   "start": 114.42,
+   "end": 130.65,
+   "chapter": "Solving",
+   "title": "Solving: Make It Equal Zero",
+   "says": "Factorising lets you solve quadratics. x squared plus 5x plus 6 equals 0 becomes x plus 2, times x plus 3, equals 0. If two things multiply to make 0, one of them must be 0. So x is minus 2, or x is minus 3.",
+   "onScreen": "Worked: x² + 5x + 6 = 0 | (x + 2)(x + 3) = 0 // factorise first | x + 2 = 0 or x + 3 = 0 // one bracket must be 0 | x = −2 or x = −3",
+   "key": "Solving: factorise, set each bracket to 0, flip the sign."
+  },
+  {
+   "start": 130.65,
+   "end": 142,
+   "chapter": "Exam Tips",
+   "title": "Exam Tips: Common Mistakes",
+   "says": "The mistakes that lose marks: only multiplying the first terms and the last terms, losing a minus sign, picking numbers that multiply but don't add, and forgetting to flip the signs when solving.",
+   "onScreen": "Worked: ✗ (x + 3)(x + 2) = x² + 6 // multiply every part | ✗ 2 and 3 for x² + 6x + 6 // they must ADD to 6 too | ✗ (x + 2) = 0 → x = 2 // it's x = −2 | ✓ expand · pair · check · solve"
+  },
+  {
+   "start": 142,
+   "end": 151.24,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Question",
+   "says": "Your turn. Factorise x squared plus 7x plus 12. Pause the video and try it.",
+   "onScreen": "Your turn: question card with a countdown. Q: Factorise x² + 7x + 12.",
+   "question": "Factorise x² + 7x + 12",
+   "pauseForStudent": true
+  },
+  {
+   "start": 151.24,
+   "end": 160.68,
+   "chapter": "Your Turn",
+   "title": "Your Turn: Answer",
+   "says": "We need two numbers that multiply to 12 and add to 7. That's 3 and 4. So it's x plus 3, times x plus 4. If you got that, you've got it.",
+   "onScreen": "Your turn: the answer A: (x + 3)(x + 4).",
+   "question": "Factorise x² + 7x + 12",
+   "answer": "(x + 3)(x + 4)"
+  }
+ ],
+ "exportedAt": "2026-11-26"
+}
